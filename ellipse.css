@@ -1,0 +1,25 @@
+.classDataEllipse{
+    display: inline-block;
+}
+.coordinateSystemClass{
+    display: inline-block;
+    float: right;
+    border: 1px solid black;
+}
+.coordinateSystemClass img{
+    width: 400px;
+    height: 300px;
+}
+h4{
+    margin: 3px;
+}
+input{
+    width: 50px;
+}
+p{
+    margin: 3px;
+}
+body{
+    overflow: hidden;
+    background-image: url('img/cool-white-background2.jpg')
+}
