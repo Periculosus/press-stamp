@@ -1,0 +1,2 @@
+# press-stamp
+Diploma
