@@ -13,55 +13,114 @@
     </script>
 </head>
 <body>
+    <div id="polygonDataId" class="polygonDataClass">
+        <h2><b>Введите количество вершин<br>для многоугольников в пластинах</b></h2>
+        <p>Subject Polygon (upper) = <input id="subjectPolygonVertexCountId" type="text" name="subjectPolygonVertexCount"></p>
+        <p>Clip Polygon (lower) = <input id="clipPolygonVertexCountId" type="text" name="clipPolygonVertexCount"></p>
+        <p><button id="runScriptId">Get Input</button></p>
+
+        <br>
+        <div id="subjectPolygonInputDataId" class="subjectPolygonInputDataClass"></div>
+        <div id="clipPolygonInputDataId" class="clipPolygonInputDataClass"></div>
+        <br><button id='readInputId' class="readInputClass">Run</button>
+    </div>
     <canvas id="coordinateSystemId" class="coordinateSystemClass" width="500" height="500"></canvas>
     <div id="coordinatesOutputsId"></div>
 
     <script src="libs/jquery-3.1.1.min.js"></script>
     <script src="libs/sweet-alert/sweetalert.min.js"></script>
 
-    <script src="libs/polylabel-master/polylabel.js"></script>
     <script src="polygons-Sutherland-Hodgeman.js"></script>
     <script src="polygonsDrawer.js"></script>
 
     <script>
-        var subjectPolygon = [[10, 10], [70, 30], [50, 50]],
-            clipPolygon = [[20, 20], [77, 0], [0, 90]];
-        var clippedPolygon = clip(subjectPolygon, clipPolygon);
+        /////////////////////////////////////////////////////////////
+        $("#runScriptId").click(function () {
+            $("#subjectPolygonInputDataId").empty();
+            $("#clipPolygonInputDataId").empty();
 
-        var xEllipse = 0,
-            yEllipse = 0,
-            aRadiusOfEllipse = 90,
-            bRadiusOfEllipse = 90,
-            angleOfEllipse = 0;
+            window.subjectPolygonVertexCount = $("input[name='subjectPolygonVertexCount']").val();
+            window.clipPolygonVertexCount = $("input[name='clipPolygonVertexCount']").val();
 
-        myGraph.drawPolygons(function(){}, clipPolygon, '#363636', '#097054', 1);
-        myGraph.drawPolygons(function(){}, subjectPolygon, '#363636', '#6599FF', 1);
-        myGraph.drawPolygons(function(){}, clippedPolygon, '#FFDE00', '#FF9900', 2);
-
-        $("#coordinatesOutputsId").append("Coordinates = " + clippedPolygon.length);
-
-        for(var i = 0; i < clippedPolygon.length; i++) {
-            $("#coordinatesOutputsId").append("<br>(X"+"<sub>"+(i+1)+"</sub>"+"; Y"+"<sub>"+(i+1)+"</sub>"+") = ("+clippedPolygon[i]+")");
-        }
-
-        // polygon area calculation
-        // http://www.mathwords.com/a/area_convex_polygon.htm
-        var areaCoordinatesClippedPolygon = clip(subjectPolygon, clipPolygon);
-        var XnYn_plus_1 = 0, YnXn_plus_1 = 0;
-
-        areaCoordinatesClippedPolygon.push(areaCoordinatesClippedPolygon[0]);
-        for(var j = 0; j < areaCoordinatesClippedPolygon.length; j++) {
-            if((j+1) < areaCoordinatesClippedPolygon.length) {
-                XnYn_plus_1 = XnYn_plus_1 + (areaCoordinatesClippedPolygon[j][0] * areaCoordinatesClippedPolygon[j+1][1]);
-                YnXn_plus_1 = YnXn_plus_1 + (areaCoordinatesClippedPolygon[j][1] * areaCoordinatesClippedPolygon[j+1][0]);
+            $("#subjectPolygonInputDataId").append("<p><b>Координаты<br>многоугольника на<br>нижней пластине<br>(неподвижной)</b></p>");
+            for (var i = 0; i < subjectPolygonVertexCount; i++) {
+                $("#subjectPolygonInputDataId").append("<p>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
+                                                          "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'></p>");
             }
-        }
-       var areaClippedPolygon = 1/2 * Math.abs((XnYn_plus_1) - (YnXn_plus_1));
-       $("#coordinatesOutputsId").append("<br> Area of clipped polygon = " + areaClippedPolygon + " см<sup>2</sup>");
-       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        var test = centroid(clippedPolygon);
-        alert("centroid  = " + test);
-        myGraph.drawCoordinate(function(){},test[0],test[1],1,1);
+
+            $("#clipPolygonInputDataId").append("<p><b>Координаты<br>многоугольника на<br>верхней пластине<br>(подвижной)</b></p>");
+            for (i = 0; i < clipPolygonVertexCount; i++) {
+                $("#clipPolygonInputDataId").append("<p>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
+                                                       "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'></p>");
+            }
+            $("#readInputId").show();
+        })
+        $("#readInputId").click(function () {
+//            alert("hello");
+            /*
+            var subjectPolygon = [[],[]];
+            var clipPolygon = [[],[]];
+
+            var rows = 0;
+            $("div#subjectPolygonInputDataId input[name^='x']").each(function () {
+                subjectPolygon[rows][0] = $(this).val();
+                rows = rows + 1;
+            })
+            $("div#subjectPolygonInputDataId input[name^='y']").each(function () {
+                subjectPolygon[rows][1] = $(this).val();
+                rows = rows + 1;
+            })
+            $("div#clipPolygonInputDataId input[name^='x']").each(function () {
+                clipPolygon[rows][0] = $(this).val();
+                rows = rows + 1;
+            })
+            $("div#clipPolygonInputDataId input[name^='y']").each(function () {
+                clipPolygon[rows][1] = $(this).val();
+                rows = rows + 1;
+            })
+
+            alert(subjectPolygon + "         " + clipPolygon);
+            */
+            $("div#subjectPolygonInputDataId input[name='x']").each(function () {
+                alert($(this).val());
+            })
+            /////////////////////////////////////////////////////////////
+            var subjectPolygon = [[10, 10], [70, 30], [50, 50]],
+                clipPolygon = [[20, 20], [77, 0], [0, 90]];
+            var clippedPolygon = clip(subjectPolygon, clipPolygon);
+
+            myGraph.drawPolygons(function () {}, subjectPolygon, '#363636', '#6599FF', 1);
+            myGraph.drawPolygons(function () {}, clipPolygon, '#363636', '#097054', 1);
+            myGraph.drawPolygons(function () {}, clippedPolygon, '#FFDE00', '#FF9900', 2);
+
+            $("#coordinatesOutputsId").append("Coordinates = " + clippedPolygon.length);
+
+            for (var i = 0; i < clippedPolygon.length; i++) {
+                $("#coordinatesOutputsId").append("<br>(X" + "<sub>" + (i + 1) + "</sub>" + "; Y" + "<sub>" + (i + 1) + "</sub>" + ") = (" + clippedPolygon[i] + ")");
+            }
+
+            // polygon area calculation
+            // http://www.mathwords.com/a/area_convex_polygon.htm
+            var areaCoordinatesClippedPolygon = clip(subjectPolygon, clipPolygon);
+            var XnYn_plus_1 = 0, YnXn_plus_1 = 0;
+
+            areaCoordinatesClippedPolygon.push(areaCoordinatesClippedPolygon[0]);
+            for (var j = 0; j < areaCoordinatesClippedPolygon.length; j++) {
+                if ((j + 1) < areaCoordinatesClippedPolygon.length) {
+                    XnYn_plus_1 = XnYn_plus_1 + (areaCoordinatesClippedPolygon[j][0] * areaCoordinatesClippedPolygon[j + 1][1]);
+                    YnXn_plus_1 = YnXn_plus_1 + (areaCoordinatesClippedPolygon[j][1] * areaCoordinatesClippedPolygon[j + 1][0]);
+                }
+            }
+            var areaClippedPolygon = 1 / 2 * Math.abs((XnYn_plus_1) - (YnXn_plus_1));
+            $("#coordinatesOutputsId").append("<br> Area of clipped polygon = " + areaClippedPolygon + " см<sup>2</sup>");
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            var test = centroid(clippedPolygon);
+            $("#coordinatesOutputsId").append("<br> Centroid = (" + test[0] + "; " + test[1] + ")");
+            myGraph.drawCoordinate(function () {
+            }, test[0], test[1], 1, 1);
+        })
     </script>
+
 </body>
 </html>

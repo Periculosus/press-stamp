@@ -53,24 +53,23 @@ $("input").keydown(function(event) {
 });
 
 function coordinates(x) {
-    var f,f1,f2, f1A,f1B,f1C, fi, fInt;
+    var f, f1, f2, f1A, f1B, f1C, fi, fInt;
 
     fi = ((angleF * Math.PI) / 180);
 
     var sinFi = Math.sin(fi);
     var cosFi = Math.cos(fi);
 
-    f1A = (Math.pow(sinFi,2)/(a1*a1)) + (Math.pow(cosFi,2) / (b1*b1));
+    f1A = (sinFi / a1) * (sinFi / a1) + (cosFi / b1) * (cosFi / b1);
 
-    f1B = -( (2*cosFi*(sinFi*(x - lr1*cosFi) + lr1*cosFi*sinFi)) / (b1*b1) ) -
-        ( (2*sinFi*(lr1*Math.pow(sinFi,2) - cosFi*(x - lr1*cosFi))) / (a1*a1) );
+    f1B = -( (2 * cosFi * (sinFi * (x - lr1 * cosFi) + lr1 * cosFi * sinFi)) / (b1 * b1) ) -
+        ( (2 * sinFi * (lr1 * Math.pow(sinFi, 2) - cosFi * (x - lr1 * cosFi))) / (a1 * a1) );
 
-    f1C = (Math.pow( (sinFi * (x - lr1*cosFi) + lr1 * cosFi * cosFi) , 2) / (b1*b1)) +
-        (Math.pow( (lr1 * Math.pow(sinFi, 2) - cosFi * (x - lr1 * cosFi)) , 2) / (a1*a1)) - 1;
+    f1C = Math.pow(sinFi * (x - lr1 * cosFi) + lr1 * cosFi * sinFi, 2) / (b1 * b1) + Math.pow(lr1 * sinFi * sinFi - cosFi * (x - lr1 * cosFi), 2) / (a1 * a1) - 1;
 
-    f1 = (-f1B - Math.pow( (f1B*f1B - 4 * f1A * f1C), 1/2)) / (2*f1A);
+    f1 = (-f1B - Math.pow((f1B * f1B - 4 * f1A * f1C), 1 / 2)) / (2 * f1A);
 
-    f2 = Math.pow(1 - ((x - lr2) * (x - lr2)) / (a2 * a2), 1/2) * b2 ;
+    f2 = Math.pow(1 - Math.pow((x - lr2) / a2, 2), 1 / 2) * b2;
 
     f = f1 - f2;
 
@@ -98,47 +97,47 @@ $('#idCalculateArea').click(function () {
 
     var result;
     var h = R1/10000;
-    /////////////////////////////////////////
-    var x1=0;
-    var MIN = 0.1;
-    var xt1 = x1;
-    var eps1;
+        /////////////////////////////////////////
+        var x1 = 0;
+        var MIN = 0.1;
+        var xt1 = x1;
+        var eps1;
 
-    while(x1 <= R1/2){
-        try{
-            result = coordinates(x1);
-            eps1 = Math.abs(result.f);
-            if (eps1 < MIN){
-                MIN = eps1;
-                xt1 = x1;
+        while (x1 <= R1 / 2 && MIN > 0.0001) {
+            try {
+                result = coordinates(x1);
+                eps1 = Math.abs(result.f);
+                if (eps1 < MIN) {
+                    MIN = eps1;
+                    xt1 = x1;
+                }
+                x1 += h;
             }
-            x1+=h;
+            catch (err) {
+                x1 += h;
+            }
         }
-        catch(err) {
-            x1+=h;
-        }
-    }
-    ////////////////////////////////////////
-    var x2 = R1/2;
-    var MIN2 = 0.1;
-    var xt2 = x2;
-    var eps2;
+        ////////////////////////////////////////
+        var x2 = x1 + MIN;
+        var MIN2 = 0.1;
+        var xt2 = x2;
+        var eps2;
 
-    while(x2 <= R1){
-        try{
-            result = coordinates(x2);
-            eps2 = Math.abs(result.f);
-            if (eps2 < MIN2){
-                MIN2 = eps2;
-                xt2 = x2;
+        while (x2 <= R1) {
+            try {
+                result = coordinates(x2);
+                eps2 = Math.abs(result.f);
+                if (eps2 < MIN2) {
+                    MIN2 = eps2;
+                    xt2 = x2;
+                }
+                x2 += h;
             }
-            x2+=h;
+            catch (err) {
+                x2 += h;
+            }
         }
-        catch(err) {
-            x2+=h;
-        }
-    }
-    ////////////////////////////////////////
+        ////////////////////////////////////////
     var x1Intersecting, y1Intersecting,
         x2Intersecting, y2Intersecting;
     result = coordinates(xt1);
