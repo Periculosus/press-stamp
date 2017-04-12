@@ -15,8 +15,12 @@
 <body>
     <div id="polygonDataId" class="polygonDataClass">
         <h2><b>Введите количество вершин<br>для многоугольников в пластинах</b></h2>
-        <p>Subject Polygon (upper) = <input id="subjectPolygonVertexCountId" type="text" name="subjectPolygonVertexCount"></p>
-        <p>Clip Polygon (lower) = <input id="clipPolygonVertexCountId" type="text" name="clipPolygonVertexCount"></p>
+        <p>Многоугольник <b>верхней</b> пластины = <input id="subjectPolygonVertexCountId" type="text" name="subjectPolygonVertexCount">
+            <br>Радиус <b>верхней</b> пластины = <input id="upperCircleRadiusId" type="text" name="upperCircleRadius">
+        </p>
+        <p>Многоугольник <b>нижней</b> пластины = <input id="clipPolygonVertexCountId" type="text" name="clipPolygonVertexCount">
+            <br>Радиус <b>нижней</b> пластины = <input id="lowerCircleRadiusId" type="text" name="lowerCircleRadius">
+        </p>
         <p><button id="runScriptId">Get Input</button></p>
 
         <br>
@@ -42,58 +46,70 @@
             window.subjectPolygonVertexCount = $("input[name='subjectPolygonVertexCount']").val();
             window.clipPolygonVertexCount = $("input[name='clipPolygonVertexCount']").val();
 
-            $("#subjectPolygonInputDataId").append("<p><b>Координаты<br>многоугольника на<br>нижней пластине<br>(неподвижной)</b></p>");
+            $("#subjectPolygonInputDataId").append("<b>Координаты<br>многоугольника на<br>нижней пластине<br>(неподвижной)</b>");
             for (var i = 0; i < subjectPolygonVertexCount; i++) {
-                $("#subjectPolygonInputDataId").append("<p>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
-                                                          "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'></p>");
+                $("#subjectPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
+                                                          "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'>");
             }
 
-            $("#clipPolygonInputDataId").append("<p><b>Координаты<br>многоугольника на<br>верхней пластине<br>(подвижной)</b></p>");
+            $("#clipPolygonInputDataId").append("<b>Координаты<br>многоугольника на<br>верхней пластине<br>(подвижной)</b>");
             for (i = 0; i < clipPolygonVertexCount; i++) {
-                $("#clipPolygonInputDataId").append("<p>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
-                                                       "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'></p>");
+                $("#clipPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
+                                                       "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'>");
             }
             $("#readInputId").show();
         })
         $("#readInputId").click(function () {
-//            alert("hello");
-            /*
-            var subjectPolygon = [[],[]];
-            var clipPolygon = [[],[]];
+            $("#coordinatesOutputsId").empty();
+            //clear canvas
+            myGraph.clearCanvas();
 
-            var rows = 0;
-            $("div#subjectPolygonInputDataId input[name^='x']").each(function () {
-                subjectPolygon[rows][0] = $(this).val();
-                rows = rows + 1;
-            })
-            $("div#subjectPolygonInputDataId input[name^='y']").each(function () {
-                subjectPolygon[rows][1] = $(this).val();
-                rows = rows + 1;
-            })
-            $("div#clipPolygonInputDataId input[name^='x']").each(function () {
-                clipPolygon[rows][0] = $(this).val();
-                rows = rows + 1;
-            })
-            $("div#clipPolygonInputDataId input[name^='y']").each(function () {
-                clipPolygon[rows][1] = $(this).val();
-                rows = rows + 1;
-            })
-
-            alert(subjectPolygon + "         " + clipPolygon);
-            */
-            $("div#subjectPolygonInputDataId input[name='x']").each(function () {
-                alert($(this).val());
-            })
             /////////////////////////////////////////////////////////////
-            var subjectPolygon = [[10, 10], [70, 30], [50, 50]],
-                clipPolygon = [[20, 20], [77, 0], [0, 90]];
+
+            var subjectPolygon = [];
+            var clipPolygon = [];
+            var crutchX = [];
+            var crutchY = [];
+
+            $("#subjectPolygonInputDataId input[name$='x']").each(function (index) {
+                crutchX[index] = parseInt($(this).val());
+            });
+            $("#subjectPolygonInputDataId input[name^='y']").each(function (index) {
+                crutchY[index] = parseInt($(this).val());
+            });
+            for(var rows = 0; rows < crutchX.length; rows++) {
+                subjectPolygon.push([crutchX[rows], crutchY[rows]]);
+            }
+
+            crutchX = [];
+            crutchY = [];
+
+            $("div#clipPolygonInputDataId input[name^='x']").each(function (index) {
+                crutchX[index] = parseInt($(this).val());
+            });
+            $("div#clipPolygonInputDataId input[name^='y']").each(function (index) {
+                crutchY[index] = parseInt($(this).val());
+            });
+            for(rows = 0; rows < crutchX.length; rows++) {
+                clipPolygon.push([crutchX[rows], crutchY[rows]]);
+            }
+
+            /////////////////////////////////////////////////////////////
+//           var subjectPolygon = [[10, 10], [70, 30], [50, 50]],
+//               clipPolygon = [[20, 20], [77, 0], [0, 90]];
             var clippedPolygon = clip(subjectPolygon, clipPolygon);
+
+            alert("subjectPolygon = " + subjectPolygon + " clipPolygon = " + clipPolygon);
 
             myGraph.drawPolygons(function () {}, subjectPolygon, '#363636', '#6599FF', 1);
             myGraph.drawPolygons(function () {}, clipPolygon, '#363636', '#097054', 1);
             myGraph.drawPolygons(function () {}, clippedPolygon, '#FFDE00', '#FF9900', 2);
 
-            $("#coordinatesOutputsId").append("Coordinates = " + clippedPolygon.length);
+            // reDraw coordinate system in max lvl
+            myGraph.drawXAxis();
+            myGraph.drawYAxis();
+
+            $("#coordinatesOutputsId").append("Intersecting coordinates count is " + clippedPolygon.length);
 
             for (var i = 0; i < clippedPolygon.length; i++) {
                 $("#coordinatesOutputsId").append("<br>(X" + "<sub>" + (i + 1) + "</sub>" + "; Y" + "<sub>" + (i + 1) + "</sub>" + ") = (" + clippedPolygon[i] + ")");
@@ -115,10 +131,10 @@
             $("#coordinatesOutputsId").append("<br> Area of clipped polygon = " + areaClippedPolygon + " см<sup>2</sup>");
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            var test = centroid(clippedPolygon);
-            $("#coordinatesOutputsId").append("<br> Centroid = (" + test[0] + "; " + test[1] + ")");
-            myGraph.drawCoordinate(function () {
-            }, test[0], test[1], 1, 1);
+            var centroidAxis = centroid(clippedPolygon);
+            $("#coordinatesOutputsId").append("<br> Centroid = (" + centroidAxis[0] + "; " + centroidAxis[1] + ")");
+            myGraph.drawCoordinate(function () {}, centroidAxis[0], centroidAxis[1], 1, 1);
+
         })
     </script>
 

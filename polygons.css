@@ -2,13 +2,14 @@ body {
     overflow: hidden;
     background-image: url('img/cool-white-background2.jpg')
 }
-p {
-    margin-left: 3px;
+input {
+    width: 50px;
 }
 .polygonDataClass {
     display: inline-block;
 }
 .subjectPolygonInputDataClass {
+    padding: 5px;
     display: inline-block;
     border-left: solid 2px black;
 }
@@ -16,11 +17,9 @@ p {
     width: 50px;
 }
 .clipPolygonInputDataClass {
+    padding: 5px;
     display: inline-block;
     border-left: solid 2px black;
-}
-.clipPolygonInputDataClass input {
-    width: 50px;
 }
 .readInputClass {
     display: none;
