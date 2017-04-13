@@ -3,7 +3,7 @@ body {
     background-image: url('img/cool-white-background2.jpg')
 }
 input {
-    width: 50px;
+    width: 40px;
 }
 .polygonDataClass {
     display: inline-block;
@@ -13,18 +13,18 @@ input {
     display: inline-block;
     border-left: solid 2px black;
 }
-.subjectPolygonInputDataClass input {
-    width: 50px;
-}
 .clipPolygonInputDataClass {
     padding: 5px;
     display: inline-block;
     border-left: solid 2px black;
 }
-.readInputClass {
+.inputDataClass {
     display: none;
 }
 .coordinateSystemClass {
     border: 2px solid black;
+    display: inline-block;
+}
+.coordinatesOutputsClass {
     display: inline-block;
 }

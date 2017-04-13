@@ -182,9 +182,9 @@ $('#idCalculateArea').click(function () {
         myGraph.clearCanvas();
 
         //upper plate 1
-        myGraph.drawCircle(function(){}, 0, 0, R1, 'green', 3);
+        myGraph.drawCircle(function(){}, 0, 0, R1, "#098d70", 5);
         //lower plate 2
-        myGraph.drawCircle(function(){}, 0, 0, R2, 'red', 5);
+        myGraph.drawCircle(function(){}, 0, 0, R2, "#ff2900", 5);
 
         /* x,y - coordinates of circle
         x0, y0 - coordinates of dot on circle
@@ -205,9 +205,9 @@ $('#idCalculateArea').click(function () {
             s = Math.sin(angleF * Math.PI / 180),
             x1 = rx * c - ry * s,
             y1 = rx * s + ry * c;
-        myGraph.drawEllipse(function(){}, x1, y1, a1, b1, angleF, 'green', 1, "#41b745", 0.3);
+        myGraph.drawEllipse(function(){}, x1, y1, a1, b1, angleF, 'green', 1, "#098d70", 0.3);
         //default position of ellipse 2 on lower FIXED plate 2
-        myGraph.drawEllipse(function(){}, lr2, 0, a2, b2, 0, 'red', 1, "#b72d36", 0.3);
+        myGraph.drawEllipse(function(){}, lr2, 0, a2, b2, 0, 'red', 1, "#ff2900", 0.3);
 
         //radius from R1 ro ellipse 1
         myGraph.drawLine(function(){}, 0, 0, x1, y1, 'green', 1);
