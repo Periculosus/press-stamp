@@ -3,23 +3,31 @@
 }
 .coordinateSystemClass{
     display: inline-block;
-    float: right;
+    /*float: right;*/
     border: 1px solid black;
+    margin-left: 10px;
 }
 .coordinateSystemClass img{
     width: 400px;
     height: 300px;
 }
-h4{
+h4 {
     margin: 3px;
 }
-input{
-    width: 50px;
+input {
+    width: 40px;
 }
-p{
+p {
     margin: 3px;
 }
-body{
-    overflow: hidden;
+body {
+    /*overflow: hidden;*/
     background-image: url('img/cool-white-background2.jpg')
+}
+.ellipseGraphicsClass {
+    /*display: none;*/
+}
+.ellipseGraphicsDataClass {
+    display: inline-block;
+    float: left;
 }

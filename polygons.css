@@ -1,5 +1,5 @@
 body {
-    overflow: hidden;
+    /*overflow: hidden;*/
     background-image: url('img/cool-white-background2.jpg')
 }
 input {
@@ -7,6 +7,7 @@ input {
 }
 .polygonDataClass {
     display: inline-block;
+    float: left;
 }
 .subjectPolygonInputDataClass {
     padding: 5px;
@@ -24,7 +25,9 @@ input {
 .coordinateSystemClass {
     border: 2px solid black;
     display: inline-block;
+    margin-left: 10px;
 }
 .coordinatesOutputsClass {
     display: inline-block;
+    float: left;
 }

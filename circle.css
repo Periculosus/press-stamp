@@ -1,0 +1,21 @@
+body {
+    /*overflow: hidden;*/
+    background-image: url('img/cool-white-background2.jpg')
+}
+p {
+    margin: 3px;
+    /*font-weight: bold;*/
+}
+input {
+    width: 40px;
+}
+.circleDataClass {
+    display: inline-block;
+    float: left;
+}
+
+.coordinateSystemClass {
+    display: inline-block;
+    border: 1px solid black;
+    margin-left: 10px;
+}

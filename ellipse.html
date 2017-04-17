@@ -24,13 +24,15 @@
         <h4>Расстояние от центра круглой пластины до отверстия</h4>
         <p>LR<sub>1</sub> = <input type="text" name="LR1"> LR<sub>2</sub> = <input type="text" name="LR2"></p>
         <h4>Угол поворота по оси круглой пластины (в градусах)</h4>
-        <p>Angle = <input type="text" name="angleF"></p>
+        <p>Угол = <input type="text" name="angleF"></p>
         <h4>Площадь пересечения отверстий (эллипсов)</h4>
-        <p>Intersecting Area = <output name="Si"> </output> см<sup>2</sup></p>
+        <p>Si = <output name="Si"> </output> см<sup>2</sup></p>
         <h4>Коэффициент перекрытия</h4>
         <p>Ki = <output name="Ki"></output></p>
-        <button id="idCalculateArea" class="classCalculateArea">Calculate Area of Intersecting Ellipses</button>
-        <p>Координаты точек пересечения:
+        <button id="idCalculateArea" class="classCalculateArea">Вычислить площадь пересечения эллипсов</button>
+        <br><button id="drawGraphicsId" class="drawGraphicsClass">Построить графики зависимостей</button>
+        <button id="infoId" class="infoClass"><b>[?]</b></button>
+        <p><b>Координаты точек пересечения:</b>
             <br>(x<sub>1</sub> = <output name="x1"></output>; y<sub>1</sub> = <output name="y1"></output>)
             <br>(x<sub>2</sub> = <output name="x2"></output>; y<sub>2</sub> = <output name="y2"></output>)
         </p>
@@ -49,6 +51,10 @@
     <script src="polygonsDrawer.js"></script>
 
     <!-- Calling scripts for  -->
-    <script></script>
+    <script>
+        $("#drawGraphicsId").click(function () {
+            window.open('ellipseGraph.html', '', "width=700,height=550");
+        })
+    </script>
 </body>
 </html>

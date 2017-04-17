@@ -41,7 +41,7 @@ $("input[name='angleF']").keyup(function() {
     window.angleF = $( this ).val();
 }).keyup();
 
-$("input").keydown(function(event) {
+$("#idDataEllipse input").keydown(function(event) {
     if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {
     }
     else {
@@ -84,8 +84,8 @@ function coordinates(x) {
 }
 
 $('#idCalculateArea').click(function () {
-    window.counterInputs=0;
-    $("input").each(function(){
+    window.counterInputs = 0;
+    $("#idDataEllipse input").each(function(){
         if( $(this).val() != ''){
             counterInputs += 1;
         }
@@ -221,5 +221,3 @@ $('#idCalculateArea').click(function () {
         myGraph.drawYAxis();
     }
 });
-
-

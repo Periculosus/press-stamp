@@ -5,7 +5,8 @@ function Graph(config) {
     this.minY = config.minY;
     this.maxX = config.maxX;
     this.maxY = config.maxY;
-    this.unitsPerTick = config.unitsPerTick;
+    this.unitsPerTickX = config.unitsPerTickX;
+    this.unitsPerTickY = config.unitsPerTickY;
 
     // constants
     this.axisColor = '#000000';
@@ -40,7 +41,7 @@ Graph.prototype.drawXAxis = function () {
     context.stroke();
 
     // draw tick marks
-    var xPosIncrement = this.unitsPerTick * this.unitX;
+    var xPosIncrement = this.unitsPerTickX * this.unitX;
     var xPos, unit;
     context.font = this.font;
     context.textAlign = 'center';
@@ -48,25 +49,39 @@ Graph.prototype.drawXAxis = function () {
 
     // draw left tick marks
     xPos = this.centerX - xPosIncrement;
-    unit = -1 * this.unitsPerTick;
+    unit = -1 * this.unitsPerTickX;
     while (xPos > 0) {
         context.moveTo(xPos, this.centerY - this.tickSize / 2);
         context.lineTo(xPos, this.centerY + this.tickSize / 2);
         context.stroke();
-        context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
-        unit -= this.unitsPerTick;
+        //added "if else" check to avoid numbers like 0.30000000000000004
+        if(this.unitsPerTickX >=1){
+            context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
+        }
+        else {
+            context.fillText(unit.toFixed(1), xPos, this.centerY + this.tickSize / 2 + 3);
+        }
+
+        unit -= this.unitsPerTickX;
         xPos = Math.round(xPos - xPosIncrement);
     }
 
     // draw right tick marks
     xPos = this.centerX + xPosIncrement;
-    unit = this.unitsPerTick;
+    unit = this.unitsPerTickX;
     while (xPos < this.canvas.width) {
         context.moveTo(xPos, this.centerY - this.tickSize / 2);
         context.lineTo(xPos, this.centerY + this.tickSize / 2);
         context.stroke();
-        context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
-        unit += this.unitsPerTick;
+        //added "if else" check to avoid numbers like 0.30000000000000004
+        if(this.unitsPerTickX >=1){
+            context.fillText(unit, xPos, this.centerY + this.tickSize / 2 + 3);
+        }
+        else {
+            context.fillText(unit.toFixed(1), xPos, this.centerY + this.tickSize / 2 + 3);
+        }
+
+        unit += this.unitsPerTickX;
         xPos = Math.round(xPos + xPosIncrement);
     }
     context.restore();
@@ -83,7 +98,7 @@ Graph.prototype.drawYAxis = function () {
     context.stroke();
 
     // draw tick marks
-    var yPosIncrement = this.unitsPerTick * this.unitY;
+    var yPosIncrement = this.unitsPerTickY * this.unitY;
     var yPos, unit;
     context.font = this.font;
     context.textAlign = 'right';
@@ -91,25 +106,39 @@ Graph.prototype.drawYAxis = function () {
 
     // draw top tick marks
     yPos = this.centerY - yPosIncrement;
-    unit = this.unitsPerTick;
+    unit = this.unitsPerTickY;
     while (yPos > 0) {
         context.moveTo(this.centerX - this.tickSize / 2, yPos);
         context.lineTo(this.centerX + this.tickSize / 2, yPos);
         context.stroke();
-        context.fillText(unit, this.centerX - this.tickSize / 2 - 3, yPos);
-        unit += this.unitsPerTick;
+        //added "if else" check to avoid numbers like 0.30000000000000004
+        if(this.unitsPerTickY >=1){
+            context.fillText(unit, this.centerX - this.tickSize / 2 - 3, yPos);
+        }
+        else {
+            context.fillText(unit.toFixed(1), this.centerX - this.tickSize / 2 - 3, yPos);
+        }
+
+        unit += this.unitsPerTickY;
         yPos = Math.round(yPos - yPosIncrement);
     }
 
     // draw bottom tick marks
     yPos = this.centerY + yPosIncrement;
-    unit = -1 * this.unitsPerTick;
+    unit = -1 * this.unitsPerTickY;
     while (yPos < this.canvas.height) {
         context.moveTo(this.centerX - this.tickSize / 2, yPos);
         context.lineTo(this.centerX + this.tickSize / 2, yPos);
         context.stroke();
-        context.fillText(unit, this.centerX - this.tickSize / 2 - 3, yPos);
-        unit -= this.unitsPerTick;
+        //added "if else" check to avoid numbers like 0.30000000000000004
+        if(this.unitsPerTickY >=1){
+            context.fillText(unit, this.centerX - this.tickSize / 2 - 3, yPos);
+        }
+        else {
+            context.fillText(unit.toFixed(1), this.centerX - this.tickSize / 2 - 3, yPos);
+        }
+
+        unit -= this.unitsPerTickY;
         yPos = Math.round(yPos + yPosIncrement);
     }
     context.restore();
@@ -278,13 +307,15 @@ Graph.prototype.clearCanvas = function () {
 };
 ///////////////////////////////////////////////////////////////////////////////////////
 
+//better locate with canvas in js-canvasRedactorFile
 var myGraph = new Graph({
     canvasId: 'coordinateSystemId',
     minX: -100,
     minY: -100,
     maxX: 100,
     maxY: 100,
-    unitsPerTick: 10
+    unitsPerTickX: 10,
+    unitsPerTickY: 10
 });
 
 /*
