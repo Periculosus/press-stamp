@@ -1,28 +1,18 @@
 .classDataEllipse{
     display: inline-block;
+    float: left;
+    border: inset 5px black;
+    padding: 5px;
 }
 .coordinateSystemClass{
     display: inline-block;
-    /*float: right;*/
-    border: 1px solid black;
+    float: right;
+    border: outset 5px black;
     margin-left: 10px;
 }
 .coordinateSystemClass img{
     width: 400px;
     height: 300px;
-}
-h4 {
-    margin: 3px;
-}
-input {
-    width: 40px;
-}
-p {
-    margin: 3px;
-}
-body {
-    /*overflow: hidden;*/
-    background-image: url('img/cool-white-background2.jpg')
 }
 .ellipseGraphicsClass {
     /*display: none;*/
@@ -30,4 +20,7 @@ body {
 .ellipseGraphicsDataClass {
     display: inline-block;
     float: left;
+}
+h4 {
+    margin: 3px;
 }

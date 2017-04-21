@@ -1,13 +1,8 @@
-body {
-    /*overflow: hidden;*/
-    background-image: url('img/cool-white-background2.jpg')
-}
-input {
-    width: 40px;
-}
 .polygonDataClass {
     display: inline-block;
     float: left;
+    border: inset 5px black;
+    padding: 5px;
 }
 .subjectPolygonInputDataClass {
     padding: 5px;
@@ -23,11 +18,14 @@ input {
     display: none;
 }
 .coordinateSystemClass {
-    border: 2px solid black;
+    border: outset 5px black;
+    float: right;
     display: inline-block;
     margin-left: 10px;
 }
 .coordinatesOutputsClass {
     display: inline-block;
-    float: left;
+    /*float: left;*/
+    text-align: center;
+    padding: 10px;
 }

@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>The Area of Intersecting Ellipses</title>
+    <title>Ellipses</title>
 
+    <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="ellipse.css">
     <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
     <script>
@@ -13,8 +14,8 @@
     </script>
 </head>
 <body>
+    <h3>Расчет коэффициента перекрытия отверстий <i>овальной</i> формы в упругих пластинах компенсатора</h3>
     <div id="idDataEllipse" class="classDataEllipse">
-        <h3>Вводные данные (в сантиметрах)</h3>
         <h4>Радиусы подвижного отверстия (эллипса 1)</h4>
         <p>a<sub>1</sub> = <input type="text" name="a1"> b<sub>1</sub> = <input type="text" name="b1"></p>
         <h4>Радиусы неподвижного отверстия (эллипса 2)</h4>
@@ -52,9 +53,7 @@
 
     <!-- Calling scripts for  -->
     <script>
-        $("#drawGraphicsId").click(function () {
-            window.open('ellipseGraph.html', '', "width=700,height=550");
-        })
+
     </script>
 </body>
 </html>

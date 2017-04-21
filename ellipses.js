@@ -5,6 +5,10 @@ $('input').on('keypress', function() {
     return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8;
 });
 */
+$("#drawGraphicsId").click(function () {
+    window.open('ellipseGraph.html', '', "width=700,height=550");
+})
+
 $("input[name='a1']").keyup(function() {
     window.a1 = $(this).val();
 }).keyup();
