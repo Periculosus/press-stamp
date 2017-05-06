@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Intersecting Area Calculator</title>
+
+    <!-- style sheets  -->
+    <link rel="stylesheet" href="index.css">
+
+    <!-- script for enabling other libs of js -->
+    <script>
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+
+</head>
+<body>
+    <h3><br>АНАЛИТИЧЕСКОЕ ИССЛЕДОВАНИЕ РАБОТЫ УНИВЕРСАЛЬНОГО УПРУГОГО КОМПЕНСАТОРА ПОГРЕШНОСТЕЙ НАПРАВЛЕНИЯ ПОЛЗУНА</h3>
+    <br><button id="idCircleCalc" class="classCircleCalc">Circle Calculator</button>
+    <br><button id="idEllipseCalc" class="classEllipseCalc">Ellipse Calculator</button>
+    <br><button id="idPolygonsCalc" class="classPolygonsCalc">Polygon Calculator</button>
+    <br><button id="infoID" class="infoClass">Info</button>
+
+    <!-- lib scripts -->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <!-- my scripts -->
+    <script src="index.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>The Area of Intersecting Ellipses</title>
+
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="ellipse.css">
+    <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
+    <link rel="stylesheet" href="libs/chartist/chartist.min.css">
+    <script>
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+</head>
+<body>
+    <div id="ellipseGraphicsId" class="ellipseGraphicsClass">
+        <div id="ellipseGraphicsDataId" class="ellipseGraphicsDataClass">
+            <b>Введите данные</b>
+            <br>a<sub>1</sub> = <input type="text" name="a1">
+            <br>b<sub>1</sub> = <input type="text" name="b1">
+            <br>a<sub>2</sub> = <input type="text" name="a2">
+            <br>b<sub>2</sub> = <input type="text" name="b2">
+            <br>LR<sub>1</sub> = <input type="text" name="LR1">
+            <br>LR<sub>2</sub> = <input type="text" name="LR2">
+            <br>Угол = <input type="text" name="angleF">
+            <br><b>Соотношения</b>
+            <br><input type="radio" name="graphic" value="a12">K<sub>i</sub>(a<sub>1</sub>/a<sub>2</sub>)
+            <br><input type="radio" name="graphic" value="b12">K<sub>i</sub>(b<sub>1</sub>/b<sub>2</sub>)
+            <br><input type="radio" name="graphic" value="ab1">K<sub>i</sub>(a<sub>1</sub>/b<sub>1</sub>)
+            <br><input type="radio" name="graphic" value="ab2">K<sub>i</sub>(a<sub>2</sub>/b<sub>2</sub>)
+            <br><input type="radio" name="graphic" value="lr12">K<sub>i</sub>(lr<sub>1</sub>/lr<sub>2</sub>)
+            <br><input type="radio" name="graphic" value="angle">K<sub>i</sub>(angle)
+            <br><textarea rows="10" cols="15" readonly></textarea>
+        </div>
+        <svg id="coordinateSystemEllipseGraphicsId" class="chartistEllipseGraphClass" width="500" height="500"></svg>
+    </div>
+
+    <!--<canvas id="coordinateSystemId" class="coordinateSystemClass" width="500" height="500"></canvas>-->
+
+    <!-- XenoScripts -->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/sweet-alert/sweetalert.min.js"></script>
+    <script src="libs/chartist/chartist.min.js"></script>
+
+    <!-- Scripts for canvas graphic -->
+    <script src="polygons-Sutherland-Hodgeman.js"></script>
+    <script src="polygonsDrawer.js"></script>
+    <script src="ellipseGraph.js"></script>
+
+    <!-- Calling scripts for  -->
+    <script>
+
+    </script>
+</body>
+</html>

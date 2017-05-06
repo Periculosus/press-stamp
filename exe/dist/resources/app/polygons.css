@@ -1,0 +1,31 @@
+.polygonDataClass {
+    display: inline-block;
+    float: left;
+    border: inset 5px black;
+    padding: 5px;
+}
+.subjectPolygonInputDataClass {
+    padding: 5px;
+    display: inline-block;
+    border-left: solid 2px black;
+}
+.clipPolygonInputDataClass {
+    padding: 5px;
+    display: inline-block;
+    border-left: solid 2px black;
+}
+.inputDataClass {
+    display: none;
+}
+.coordinateSystemClass {
+    border: outset 5px black;
+    float: right;
+    display: inline-block;
+    margin-left: 10px;
+}
+.coordinatesOutputsClass {
+    display: inline-block;
+    /*float: left;*/
+    text-align: center;
+    padding: 10px;
+}

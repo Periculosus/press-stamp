@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ellipses</title>
+
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="ellipse.css">
+    <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
+    <script>
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+</head>
+<body>
+    <h3>Расчет коэффициента перекрытия отверстий <i>овальной</i> формы в упругих пластинах компенсатора</h3>
+    <div id="idDataEllipse" class="classDataEllipse">
+        <h4>Радиусы подвижного отверстия (эллипса 1)</h4>
+        <p>a<sub>1</sub> = <input type="text" name="a1"> b<sub>1</sub> = <input type="text" name="b1"></p>
+        <h4>Радиусы неподвижного отверстия (эллипса 2)</h4>
+        <p>a<sub>2</sub> = <input type="text" name="a2"> b<sub>2</sub> = <input type="text" name="b2"></p>
+        <h4>Радиусы круглых пластин</h4>
+        <p>R<sub>1</sub> = <input type="text" name="R1"> R<sub>2</sub> = <input type="text" name="R2"></p>
+        <h4>Расстояние от центра круглой пластины до отверстия</h4>
+        <p>LR<sub>1</sub> = <input type="text" name="LR1"> LR<sub>2</sub> = <input type="text" name="LR2"></p>
+        <h4>Угол поворота по оси круглой пластины (в градусах)</h4>
+        <p>Угол = <input type="text" name="angleF"></p>
+        <h4>Площадь пересечения отверстий (эллипсов)</h4>
+        <p>Si = <output name="Si"> </output> см<sup>2</sup></p>
+        <h4>Коэффициент перекрытия</h4>
+        <p>Ki = <output name="Ki"></output></p>
+        <button id="idCalculateArea" class="classCalculateArea">Вычислить площадь пересечения эллипсов</button>
+        <br><button id="drawGraphicsId" class="drawGraphicsClass">Построить графики зависимостей</button>
+        <button id="infoId" class="infoClass"><b>[?]</b></button>
+        <p><b>Координаты точек пересечения:</b>
+            <br>(x<sub>1</sub> = <output name="x1"></output>; y<sub>1</sub> = <output name="y1"></output>)
+            <br>(x<sub>2</sub> = <output name="x2"></output>; y<sub>2</sub> = <output name="y2"></output>)
+        </p>
+    </div>
+
+    <!-- Canvas for coordinate system -->
+    <canvas id="coordinateSystemId" class="coordinateSystemClass" width="500" height="500"></canvas>
+
+    <!-- XenoScripts -->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/sweet-alert/sweetalert.min.js"></script>
+
+    <!-- Scripts for canvas graphic -->
+    <script src="ellipses.js"></script>
+    <script src="polygons-Sutherland-Hodgeman.js"></script>
+    <script src="polygonsDrawer.js"></script>
+
+    <!-- Calling scripts for  -->
+    <script>
+
+    </script>
+</body>
+</html>

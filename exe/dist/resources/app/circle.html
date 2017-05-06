@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Circles</title>
+
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="circle.css">
+    <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
+    <script>
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+</head>
+<body>
+    <h3>Расчет коэффициента перекрытия отверстий <i>круглой</i> формы в упругих пластинах компенсатора</h3>
+    <div id="circleDataId" class="circleDataClass">
+        <p><b>Радиус движущиейся верхней пластины</b>
+        <br>Upper R1 = <input type="text" name="upperR1"></p>
+        <p><b>Радиус неподвижной нижней пластины</b>
+        <br>Lower R2 = <input type="text" name="lowerR2"></p>
+        <p><b>Радиус отверстия в верхней пластине</b>
+        <br>R1 = <input type="text" name="R1"></p>
+        <p><b>Радиус отверстия в нижней пластине</b>
+        <br>R2 = <input type="text" name="R2"></p>
+        <p><b>Расстояние от центра верхней пластины до центра отверстия</b>
+        <br>LR1 = <input type="text" name="LR1"></p>
+        <p><b>Расстояние от центра нижней пластины до центра отверстия</b>
+        <br>LR2 = <input type="text" name="LR2"></p>
+        <p><b>Угол поворота верхней пластины</b>
+        <br>Angle = <input type="text" name="angle"></p>
+        <br><button id="calculateIntersectingAreaId" class="calculateIntersectingAreaClass">Просчитать площадь пересечения</button>
+        <br><button id="drawCircleGraphID" class="drawCircleGraphClass">Графики зависимостей</button>
+        <button id="infoId" class="infoClass"><b>[?]</b></button>
+
+        <br><output id="outputDataID" class="outputDataClass"></output>
+    </div>
+    <canvas id="coordinateSystemCircleId" class="coordinateSystemClass" width="500" height="500"></canvas>
+
+    <!-- XenoScripts -->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/sweet-alert/sweetalert.min.js"></script>
+
+    <!-- Scripts for canvas graphic -->
+    <script src="polygons-Sutherland-Hodgeman.js"></script>
+    <script src="polygonsDrawer.js"></script>
+    <script src="circle.js"></script>
+    <script>
+
+    </script>
+</body>
+</html>

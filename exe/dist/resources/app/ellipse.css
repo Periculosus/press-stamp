@@ -1,0 +1,26 @@
+.classDataEllipse{
+    display: inline-block;
+    float: left;
+    border: inset 5px black;
+    padding: 5px;
+}
+.coordinateSystemClass{
+    display: inline-block;
+    float: right;
+    border: outset 5px black;
+    margin-left: 10px;
+}
+.coordinateSystemClass img{
+    width: 400px;
+    height: 300px;
+}
+.ellipseGraphicsClass {
+    /*display: none;*/
+}
+.ellipseGraphicsDataClass {
+    display: inline-block;
+    float: left;
+}
+h4 {
+    margin: 3px;
+}
