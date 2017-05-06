@@ -1,3 +1,7 @@
+$("#drawCircleGraphID").click(function () {
+    window.open('circleGraph.html', '', "width=700,height=550");
+});
+
 var circleIntersecting = new Graph({
     canvasId: 'coordinateSystemCircleId',
     minX: -100,
