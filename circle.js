@@ -1,4 +1,4 @@
-var circleGraph = new Graph({
+var circleIntersecting = new Graph({
     canvasId: 'coordinateSystemCircleId',
     minX: -100,
     minY: -100,
@@ -8,7 +8,36 @@ var circleGraph = new Graph({
     unitsPerTickY: 10
 });
 
-/*
+function intersectingCircleCalc() {
+    var upperR1 = $("input[name='upperR1']").val();
+    var lowerR2 = $("input[name='lowerR2']").val();
+    var R1 = $("input[name='R1']").val();
+    var R2 = $("input[name='R2']").val();
+    var LR1 = $("input[name='LR1']").val();
+    var LR2 = $("input[name='LR2']").val();
+    var angle = $("input[name='angle']").val();
+
+    var K_d = Math.sqrt(sqr(LR1) + sqr(LR2) -2 * LR1 * LR2 * Math.cos(angle * Math.PI/180));
+    var K_w1 = LR1 / R1;
+    var K_w2 = LR2 / R2;
+    var K_w = R2 / R1;
+    var K_cos_alpha = (sqr(R2) - sqr(R1) - sqr(K_d)) / (-2 * R1 * K_d);
+    var K_cos_beta = (sqr(R1) - sqr(R2) - sqr(K_d)) / (-2 * R2 * K_d);
+    var K_alpha = Math.acos(K_cos_alpha) * 180 / Math.PI;
+    var K_beta = Math.acos(K_cos_beta) * 180 / Math.PI;
+    var K_sin_alpha = Math.sin(K_alpha * Math.PI / 180);
+    var K_A = K_sin_alpha;
+    var K_K = (K_alpha * (Math.PI / 180) - 0.5 * Math.sin (2 * K_alpha * (Math.PI / 180)) +
+        sqr(K_w) * (K_beta * (Math.PI / 180) - 0.5 * Math.sin(2 * K_beta * (Math.PI / 180)))) / Math.PI;
+    var K_S_per = K_K * Math.PI * sqr(R1);
+
+    return {
+        K: K_K,
+        S: K_S_per
+    }
+}
+
+
  window.upperR1 = 0;
  window.lowerR2 = 0;
  window.R1 = 0;
@@ -16,7 +45,7 @@ var circleGraph = new Graph({
  window.LR1 = 0;
  window.LR2 = 0;
  window.angle = 0;
- */
+
 
 /*
  K_d:=sqrt(sqr(K_p1)+sqr(K_p2)-2*K_p1*K_p2*cos(K_fi*pi/180));
@@ -69,12 +98,14 @@ $("#calculateIntersectingAreaId").click(function () {
     var K_S_per = K_K * Math.PI * sqr(R1);
 
     //clear canvas
-    circleGraph.clearCanvas();
+    circleIntersecting.clearCanvas();
+    //clear output
+    $("#outputDataID").empty();
 
     //upper plate 1
-    circleGraph.drawCircle(function(){}, 0, 0, upperR1, "#098d70", 5);
+    circleIntersecting.drawCircle(function(){}, 0, 0, upperR1, "#098d70", 5);
     //lower plate 2
-    circleGraph.drawCircle(function(){}, 0, 0, lowerR2, "#ff2900", 5);
+    circleIntersecting.drawCircle(function(){}, 0, 0, lowerR2, "#ff2900", 5);
 
     /*
      x,y - coordinates of circle
@@ -97,20 +128,18 @@ $("#calculateIntersectingAreaId").click(function () {
         s = Math.sin(angle * Math.PI / 180),
         x1 = rx * c - ry * s,
         y1 = rx * s + ry * c;
-    circleGraph.drawCircle(function(){}, x1, y1, R1, 'green', 1, "#098d70", 0.3);
+    circleIntersecting.drawCircle(function(){}, x1, y1, R1, 'green', 1, "#098d70", 0.3);
     //default position of circle 2 on lower FIXED plate 2
-    circleGraph.drawCircle(function(){}, LR2, 0, R2, 'red', 1, "#ff2900", 0.3);
+    circleIntersecting.drawCircle(function(){}, LR2, 0, R2, 'red', 1, "#ff2900", 0.3);
 
     //radius from R1 ro circle 1
-    circleGraph.drawLine(function(){}, 0, 0, x1, y1, 'green', 1);
+    circleIntersecting.drawLine(function(){}, 0, 0, x1, y1, 'green', 1);
 
     // reDraw coordinate system in max lvl
-    circleGraph.drawXAxis();
-    circleGraph.drawYAxis();
+    circleIntersecting.drawXAxis();
+    circleIntersecting.drawYAxis();
 
     $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup>" +
-        "<br><b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup>");
+                          "<br><b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup>");
 
-
-
-})
+});

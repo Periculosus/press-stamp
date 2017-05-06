@@ -1,15 +1,17 @@
-var ellipseGraph = new Graph({
-    canvasId: 'coordinateSystemEllipseGraphicsId',
-    minX: -0.05,
-    minY: -1.05,
-    maxX: 1.05,
-    maxY: 0.05,
-    unitsPerTickX: 0.1,
-    unitsPerTickY: 0.1
-});
-
-window.dotWidth = 0.01;
-window.dotHeight = 0.01;
+function drawLineGraph(xArrays, yArrays) {
+    $(".chartistEllipseGraphClass").empty();
+    new Chartist.Line('.chartistEllipseGraphClass', {
+        labels: xArrays,
+        series: [
+            yArrays
+        ]
+    }, {
+        fullWidth: true,
+        chartPadding: {
+            right: 40
+        }
+    });
+}
 
 function coordinates(x) {
     var f, f1, f2, f1A, f1B, f1C, fi, fInt;
@@ -42,7 +44,7 @@ function coordinates(x) {
     };
 }
 
-function calculateGraph() {
+function calculateK() {
 
     var result;
     var h = R1 / 10000;
@@ -95,17 +97,8 @@ function calculateGraph() {
     }
     ////////////////////////////////////////
 
-//            result = coordinates(xt1);
     x1Intersecting = xt1;
-//            y1Intersecting = result.f2;
-//        $("output[name='x1']").empty().text(xt1.toFixed(3));
-//        $("output[name='y1']").empty().text(result.f2.toFixed(3));
-//            result = coordinates(xt2);
     x2Intersecting = xt2;
-//            y2Intersecting = result.f2;
-//        $("output[name='x2']").empty().text(xt2.toFixed(3));
-//        $("output[name='y2']").empty().text(result.f2.toFixed(3));
-    ////////////////////////////////////////
 
     a = x1Intersecting;
     b = x2Intersecting;
@@ -130,167 +123,184 @@ function calculateGraph() {
 
 }
 
-window.a1 = 0;
-window.b1 = 0;
-window.a2 = 0;
-window.b2 = 0;
-window.R1 = 0;
-window.R2 = 0;
-window.lr1 = 0;
-window.lr2 = 0;
-window.angleF = 0;
-
-/*
- a1 = $("input[name='a1']").val();
- b1 = $("input[name='b1']").val();
- a2 = $("input[name='a2']").val();
- b2 = $("input[name='b2']").val();
- R1 = 70;
- R2 = 80;
- lr1 = $("input[name='LR1']").val();
- lr2 = $("input[name='LR2']").val();
- angleF = $("input[name='angleF']").val();
- */
-
-function defaultInputData() {
-    a1 = 21;
-    b1 = 17;
-    a2 = 25;
-    b2 = 15;
-    R1 = 70;
-    R2 = 80;
-    lr1 = 30;
-    lr2 = 35;
-    angleF = 21;
+function readVarsDara(){
+    window.a1 = parseInt($("input[name='a1']").val());
+    window.b1 = parseInt($("input[name='b1']").val());
+    window.a2 = parseInt($("input[name='a2']").val());
+    window.b2 = parseInt($("input[name='b2']").val());
+    window.R1 = 70;
+    window.R2 = 80;
+    window.lr1 = parseInt($("input[name='LR1']").val());
+    window.lr2 = parseInt($("input[name='LR2']").val());
+    window.angleF = parseInt($("input[name='angleF']").val());
 }
+/*
+function ratioGraphCalcUndDraw(number1, number2) {
+    $("textarea").empty();
+    readVarsDara();
+
+    var YKArray = [],
+        XR12 = [];
+
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (number1/number2).toFixed(3);
+        number1 = number1 + 5;
+        number2 = number2 + 10;
+    }
+    drawLineGraph(XR12, YKArray);
+
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("a12 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
+}
+*/
 
 $("input[value='a12']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    defaultInputData();
+    var YKArray = [],
+        XR12 = [];
 
-    var a12;
-
-    ellipseGraph.clearCanvas();
-    ellipseGraph.drawXAxis();
-    ellipseGraph.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        a12 = a1 / a2;
-        ellipseGraph.drawCoordinate(function () {
-        }, a12, calculateGraph(), dotWidth, dotHeight);
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (a1/a2).toFixed(3);
         a1 = a1 + 5;
         a2 = a2 + 10;
     }
+    drawLineGraph(XR12, YKArray);
 
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("a1/a2 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
 });
 
 $("input[value='b12']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    defaultInputData();
+    var YKArray = [],
+        XR12 = [];
 
-    var b12;
-
-    ellipseGraph.clearCanvas();
-    ellipseGraph.drawXAxis();
-    ellipseGraph.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        b12 = b1 / b2;
-        ellipseGraph.drawCoordinate(function () {
-        }, b12, calculateGraph(), dotWidth, dotHeight);
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (b1/b2).toFixed(3);
         b1 = b1 + 5;
         b2 = b2 + 10;
     }
+    drawLineGraph(XR12, YKArray);
 
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("b1/b2 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
 });
 
 $("input[value='ab1']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    defaultInputData();
+    var YKArray = [],
+        XR12 = [];
 
-    var ab1;
-
-    ellipseGraph.clearCanvas();
-    ellipseGraph.drawXAxis();
-    ellipseGraph.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        ab1 = a1 / b1;
-        ellipseGraph.drawCoordinate(function () {
-        }, ab1, calculateGraph(), dotWidth, dotHeight);
-        a1 = a1 + 5;
-        b1 = b1 + 10;
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (a1/b1).toFixed(3);
+        b1 = b1 + 5;
+        a1 = a1 + 10;
     }
+    drawLineGraph(XR12, YKArray);
 
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("a1/b1 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
 });
 
 $("input[value='ab2']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    defaultInputData();
+    var YKArray = [],
+        XR12 = [];
 
-    var ab2;
-
-    ellipseGraph.clearCanvas();
-    ellipseGraph.drawXAxis();
-    ellipseGraph.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        ab2 = a2 / b2;
-        ellipseGraph.drawCoordinate(function () {
-        }, ab2, calculateGraph(), dotWidth, dotHeight);
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (a2/b2).toFixed(3);
         a2 = a2 + 5;
         b2 = b2 + 10;
     }
+    drawLineGraph(XR12, YKArray);
 
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("a2/b2 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
 });
 
 $("input[value='lr12']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    defaultInputData();
+    var YKArray = [],
+        XR12 = [];
 
-    var lr12;
-
-    ellipseGraph.clearCanvas();
-    ellipseGraph.drawXAxis();
-    ellipseGraph.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        lr12 = lr1 / lr2;
-        ellipseGraph.drawCoordinate(function () {
-        }, lr12, calculateGraph(), dotWidth, dotHeight);
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
+        }
+        else YKArray[i] = calculateK();
+        XR12[i] = (lr1/lr2).toFixed(3);
         lr1 = lr1 + 5;
         lr2 = lr2 + 10;
     }
+    drawLineGraph(XR12, YKArray);
 
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("lr1/lr2 = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
 });
 
 
 $("input[value='angle']").click(function () {
+    $("textarea").empty();
+    readVarsDara();
 
-    var ellipseGraphAngle = new Graph({
-        canvasId: 'coordinateSystemEllipseGraphicsId',
-        minX: -5,
-        minY: -5.2,
-        maxX: 90,
-        maxY: 0.5,
-        unitsPerTickX: 5,
-        unitsPerTickY: 0.5
-    });
+    var YKArray = [],
+        XR12 = [];
 
-    defaultInputData();
-
-    ellipseGraphAngle.clearCanvas();
-    ellipseGraphAngle.drawXAxis();
-    ellipseGraphAngle.drawYAxis();
-
-    for (var step = 0; step < 15; step++) {
-        ellipseGraphAngle.drawCoordinate(function () {
-        }, angleF, calculateGraph(), 0.7, 0.05);
-        if (angleF > 90) {
-            break;
+    for (var i = 0; i < 10; i++) {
+        if(isNaN(calculateK()) == true){
+            YKArray[i] = 0;
         }
+        else YKArray[i] = calculateK();
+        XR12[i] = (angleF).toFixed(3);
         angleF = angleF + 5;
     }
+    drawLineGraph(XR12, YKArray);
 
-})
+    for(var j = 0; j < XR12.length; j++){
+        $("textarea").append("angle = " + XR12[j] + "\n" +
+                             "K = " + YKArray[j].toFixed(3) + "\n");
+    }
+});
 

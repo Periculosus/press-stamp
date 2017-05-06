@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>The Area of Intersecting Ellipses</title>
 
+    <link rel="stylesheet" href="general.css">
     <link rel="stylesheet" href="ellipse.css">
     <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
+    <link rel="stylesheet" href="libs/chartist/chartist.min.css">
     <script>
         delete window.require;
         delete window.exports;
@@ -32,7 +34,7 @@
             <br><input type="radio" name="graphic" value="angle">K<sub>i</sub>(angle)
             <br><textarea rows="10" cols="15" readonly></textarea>
         </div>
-        <canvas id="coordinateSystemEllipseGraphicsId" class="coordinateSystemClass" width="500" height="500"></canvas>
+        <svg id="coordinateSystemEllipseGraphicsId" class="chartistEllipseGraphClass" width="500" height="500"></svg>
     </div>
 
     <!--<canvas id="coordinateSystemId" class="coordinateSystemClass" width="500" height="500"></canvas>-->
@@ -40,6 +42,7 @@
     <!-- XenoScripts -->
     <script src="libs/jquery-3.1.1.min.js"></script>
     <script src="libs/sweet-alert/sweetalert.min.js"></script>
+    <script src="libs/chartist/chartist.min.js"></script>
 
     <!-- Scripts for canvas graphic -->
     <script src="polygons-Sutherland-Hodgeman.js"></script>

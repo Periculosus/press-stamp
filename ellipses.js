@@ -7,7 +7,7 @@ $('input').on('keypress', function() {
 */
 $("#drawGraphicsId").click(function () {
     window.open('ellipseGraph.html', '', "width=700,height=550");
-})
+});
 
 $("input[name='a1']").keyup(function() {
     window.a1 = $(this).val();

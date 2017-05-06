@@ -31,7 +31,7 @@
         <p><b>Угол поворота верхней пластины</b>
         <br>Angle = <input type="text" name="angle"></p>
         <br><button id="calculateIntersectingAreaId" class="calculateIntersectingAreaClass">Просчитать площадь пересечения</button>
-        <br><button id="drawGraph" class="calculateIntersectingAreaClass">Графики зависимостей</button>
+        <br><button id="drawCircleGraphID" class="drawCircleGraphClass">Графики зависимостей</button>
         <button id="infoId" class="infoClass"><b>[?]</b></button>
 
         <br><output id="outputDataID" class="outputDataClass"></output>
@@ -47,7 +47,9 @@
     <script src="polygonsDrawer.js"></script>
     <script src="circle.js"></script>
     <script>
-
+        $("#drawCircleGraphID").click(function () {
+            window.open('circleGraph.html', '', "width=700,height=525");
+        });
     </script>
 </body>
 </html>

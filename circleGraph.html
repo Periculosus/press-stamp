@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>The Area of Intersecting Ellipses</title>
+
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="circle.css">
+    <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
+    <link rel="stylesheet" href="libs/chartist/chartist.min.css">
+    <script>
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+</head>
+<body>
+    <div id="circleGraphicsId" class="circleGraphicsClass">
+        <b>Введите данные</b>
+        <br>R<sub>1</sub> = <input type="text" name="R1">
+        <br>R<sub>2</sub> = <input type="text" name="R2">
+        <br>LR<sub>1</sub> = <input type="text" name="LR1">
+        <br>LR<sub>2</sub> = <input type="text" name="LR2">
+        <br>Угол = <input type="text" name="angle">
+        <br><b>Соотношения</b>
+        <br><input type="radio" name="graphic" value="R12">K<sub>i</sub>(R<sub>1</sub>/R<sub>2</sub>)
+        <br><input type="radio" name="graphic" value="LR12">K<sub>i</sub>(LR<sub>1</sub>/LR<sub>2</sub>)
+        <br><input type="radio" name="graphic" value="RLR1">K<sub>i</sub>(LR<sub>1</sub>/R<sub>1</sub>)
+        <br><input type="radio" name="graphic" value="RLR2">K<sub>i</sub>(LR<sub>2</sub>/R<sub>2</sub>)
+        <br><input type="radio" name="graphic" value="angle">K<sub>i</sub>(angle)
+        <br><textarea rows="14" cols="15" readonly></textarea>
+    </div>
+    <!--<canvas id="coordinateSystemCircleId" class="coordinateSystemClass" width="500" height="500"></canvas>-->
+    <svg id="coordinateSystemCircleId" class="chartistCircleGraphClass" width="500" height="500"></svg>
+
+    <!-- XenoScripts -->
+    <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/sweet-alert/sweetalert.min.js"></script>
+    <script src="libs/chartist/chartist.min.js"></script>
+
+    <!-- Scripts for canvas graphic -->
+    <script src="polygons-Sutherland-Hodgeman.js"></script>
+    <script src="polygonsDrawer.js"></script>
+    <script src="circleGraph.js"></script>
+
+    <script>
+
+    </script>
+<!-- Calling scripts for  -->
+</body>
+</html>
