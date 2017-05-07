@@ -14,3 +14,10 @@
     display: inline-block;
     float: left;
 }
+.chartistCircleGraphClass {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    width:500px;
+    height:500px;
+}

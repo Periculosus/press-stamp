@@ -1,5 +1,5 @@
 $("#drawCircleGraphID").click(function () {
-    window.open('circleGraph.html', '', "width=700,height=550");
+    window.open('circleGraph.html', '', "width=710,height=550");
 });
 
 var circleIntersecting = new Graph({

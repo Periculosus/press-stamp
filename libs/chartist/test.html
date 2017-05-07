@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+</head>
+
+<body>
+
+<div id="chart_respondant" class="ct-chart ct-minor-seventh"></div>
+
+<script>
+    var options = {
+        axisX: {
+            showGrid: true
+        },
+        axisY: {
+            showGrid: true
+        }
+    };
+
+    var data_respondant = {
+        labels: ['Parents', 'Teachers', 'Community', 'Staff', 'Volunteers', 'Others'],
+        series: [[80, 200, 100, 80, 200, 100]]
+    };
+
+    new Chartist.Line('#chart_respondant', data_respondant, options).on('draw', function (data) {
+        if (data.type === 'bar') {
+            data.element.attr({
+                style: 'stroke-width: 20px'
+            });
+        }
+    });
+
+</script>
+</body>
+
+</html>

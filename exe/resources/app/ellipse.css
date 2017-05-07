@@ -21,6 +21,13 @@
     display: inline-block;
     float: left;
 }
+.chartistEllipseGraphClass {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    width:500px;
+    height:500px;
+}
 h4 {
     margin: 3px;
 }

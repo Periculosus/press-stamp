@@ -6,7 +6,7 @@ $('input').on('keypress', function() {
 });
 */
 $("#drawGraphicsId").click(function () {
-    window.open('ellipseGraph.html', '', "width=700,height=570");
+    window.open('ellipseGraph.html', '', "width=710,height=570");
 });
 
 $("input[name='a1']").keyup(function() {

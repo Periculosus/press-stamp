@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+  <script src="http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+</head>
+
+<body>
+
+<div id="chart_respondant" class="ct-chart ct-minor-seventh"></div>
+<div id="chart_ivrs" class="ct-chart ct-minor-seventh"></div>
+
+  <script>
+    var options = {
+      axisX: {
+        showGrid: false
+      },
+      axisY: {
+        showGrid: false
+      }
+    };
+    var data_respondant = {
+      labels: ['Parents', 'Teachers', 'Community', 'Staff', 'Volunteers', 'Others'],
+      series: [[80, 200, 100, 80, 200, 100]]
+    };
+    new Chartist.Bar('#chart_respondant', data_respondant, options).on('draw', function (data) {
+      if (data.type === 'bar') {
+        data.element.attr({
+          style: 'stroke-width: 20px'
+        });
+      }
+    });
+    var data_ivrs = {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      series: [[500, 1200, 1000, 700, 540, 1030, 360]]
+    };
+    new Chartist.Bar('#chart_ivrs', data_ivrs, options).on('draw', function (data) {
+      if (data.type === 'bar') {
+        data.element.attr({
+          style: 'stroke-width: 20px'
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
