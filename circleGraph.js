@@ -12,6 +12,20 @@ function drawLineGraph(xArrays, yArrays) {
         }
     });
 }
+
+$("#fillGraphDataID").click(function () {
+    $("input[name='R1']").val(21);
+    $("input[name='R2']").val(27);
+    $("input[name='LR1']").val(30);
+    $("input[name='LR2']").val(33);
+    $("input[name='angle']").val(30);
+});
+
+$("#saveGraphDataID").click(function () {
+
+    sweetAlert("saved");
+});
+
 function sqr(number) {
     return Math.pow(number, 2);
 }

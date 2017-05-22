@@ -13,6 +13,23 @@ function drawLineGraph(xArrays, yArrays) {
     });
 }
 
+$("#fillGraphDataID").click(function () {
+    $("input[name='a1']").val(21);
+    $("input[name='b1']").val(17);
+    $("input[name='a2']").val(25);
+    $("input[name='b2']").val(15);
+    $("input[name='R1']").val(70);
+    $("input[name='R2']").val(80);
+    $("input[name='LR1']").val(30);
+    $("input[name='LR2']").val(35);
+    $("input[name='angleF']").val(45);
+});
+
+$("#saveGraphDataID").click(function () {
+
+    sweetAlert("saved");
+});
+
 function coordinates(x) {
     var f, f1, f2, f1A, f1B, f1C, fi, fInt;
 
@@ -63,7 +80,6 @@ function calculateK() {
     var a, b, n, step, SAreaIntegral;
     var nArray = [];
 
-
     while (x1 <= R1 / 2 && MIN > 0.0001) {
         try {
             result = coordinates(x1);
@@ -79,8 +95,6 @@ function calculateK() {
         }
     }
     ////////////////////////////////////////
-
-
     while (x2 <= R1) {
         try {
             result = coordinates(x2);
@@ -120,7 +134,6 @@ function calculateK() {
     var KAreaEllipse1 = SAreaIntegral / SAreaEllipse1;
 
     return KAreaEllipse1;
-
 }
 
 function readVarsDara(){
