@@ -66,6 +66,10 @@ $("input[value='R12']").click(function () {
         R1 = R1 + 5;
         R2 = R2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("R1/R2");
+    XR12.push(" ");
+    // YKArray.push("K");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -94,6 +98,9 @@ $("input[value='LR12']").click(function () {
         LR1 = LR1 + 5;
         LR2 = LR2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("LR1/LR2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -122,6 +129,9 @@ $("input[value='RLR1']").click(function () {
         LR1 = LR1 + 5;
         R1 = R1 + 10;
     }
+    XR12.push(" ");
+    XR12.push("LR1/R1");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -150,6 +160,9 @@ $("input[value='RLR2']").click(function () {
         R2 = R2 + 5;
         LR2 = LR2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("LR2/R2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -174,9 +187,12 @@ $("input[value='angle']").click(function () {
             YKArray[i] = 0;
         }
         else YKArray[i] = intersectingCircleCalc(R1, R2, LR1, LR2, angle);
-        XR12[i] = (angle).toFixed(1);
+        XR12[i] = (angle).toFixed(0);
         angle = angle + 5;
     }
+    XR12.push(" ");
+    XR12.push("Angle");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){

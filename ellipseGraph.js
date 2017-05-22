@@ -189,6 +189,9 @@ $("input[value='a12']").click(function () {
         a1 = a1 + 5;
         a2 = a2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a1/a2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -213,6 +216,9 @@ $("input[value='b12']").click(function () {
         b1 = b1 + 5;
         b2 = b2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("b1/b2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -237,6 +243,9 @@ $("input[value='ab1']").click(function () {
         b1 = b1 + 5;
         a1 = a1 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a1/b1");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -261,6 +270,9 @@ $("input[value='ab2']").click(function () {
         a2 = a2 + 5;
         b2 = b2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a2/b2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -285,6 +297,9 @@ $("input[value='lr12']").click(function () {
         lr1 = lr1 + 5;
         lr2 = lr2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("lr1/lr2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -292,7 +307,6 @@ $("input[value='lr12']").click(function () {
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
-
 
 $("input[value='angle']").click(function () {
     $("textarea").empty();
@@ -306,9 +320,12 @@ $("input[value='angle']").click(function () {
             YKArray[i] = 0;
         }
         else YKArray[i] = calculateK();
-        XR12[i] = (angleF).toFixed(3);
+        XR12[i] = (angleF).toFixed(0);
         angleF = angleF + 5;
     }
+    XR12.push(" ");
+    XR12.push("Angle");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){

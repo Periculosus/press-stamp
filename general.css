@@ -41,3 +41,7 @@ h3 {
     float: left;
     margin-left: 10px;
 }
+.ct-label {
+    font-size: 14px;
+    color: #000000;
+}
