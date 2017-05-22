@@ -35,3 +35,9 @@ h3 {
     text-transform: uppercase;
     /*text-shadow: 0 2px white, 0 3px #777;*/
 }
+.coordinateSystemClass {
+    display: inline-block;
+    border: outset 5px black;
+    float: left;
+    margin-left: 10px;
+}

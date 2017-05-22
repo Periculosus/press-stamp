@@ -17,12 +17,6 @@
 .inputDataClass {
     display: none;
 }
-.coordinateSystemClass {
-    border: outset 5px black;
-    float: right;
-    display: inline-block;
-    margin-left: 10px;
-}
 .coordinatesOutputsClass {
     display: inline-block;
     /*float: left;*/

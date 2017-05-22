@@ -4,12 +4,6 @@
     border: inset 5px black;
     padding: 5px;
 }
-.coordinateSystemClass {
-    display: inline-block;
-    border: outset 5px black;
-    float: right;
-    margin-left: 10px;
-}
 .circleGraphicsClass {
     display: inline-block;
     float: left;
