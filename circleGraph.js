@@ -22,8 +22,62 @@ $("#fillGraphDataID").click(function () {
 });
 
 $("#saveGraphDataID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
 
-    sweetAlert("saved");
+    html2canvas($("#coordinateSystemCircleId"), {
+        onrendered: function(canvas) {
+            // Convert and download as image
+            Canvas2Image.saveAsPNG(canvas);
+            // $("#img-out").append(canvas);
+            // Clean up
+            //document.body.removeChild(canvas);
+        }
+    });
+
+    // saveSvgAsPng(document.getElementById("coordinateSystemCircleId"), "diagram.png", {scale: 0.5});
+    // saveSvgAsPng(document.getElementById("coordinateSystemCircleId"), "diagram.png");
+
+    // var canvas = document.getElementById("coordinateSystemCircleId"),
+    //     context = canvas.getContext("2d");
+    //
+    // var image = new Image;
+    // image.src = "fallback.svg";
+    // image.onload = function() {
+    //     context.drawImage(image, 0, 0);
+    //
+    //     var a = document.createElement("a");
+    //     a.download = "fallback.png";
+    //     a.href = canvas.toDataURL("image/png");
+    //     a.click();
+    // };
+
+    // html2canvas($("body"), {
+    //     onrendered: function(graph) {
+    //         graph.toBlob(function(blob) {
+    //             saveAs(blob, "graphCircle" + fullTime + ".png");
+    //         });
+    //     }
+    // });
+
+    // html2canvas(document.getElementById("coordinateSystemCircleId")).then(function(canvas) {
+    //     canvas.toBlob(function(blob) {
+    //         saveAs(blob, "graphCircle" + fullTime + ".png");
+    //     });
+    // });
+
+    // var graph = document.getElementById("coordinateSystemCircleId");
+    // graph.toBlob(function(blob) {
+    //     saveAs(blob, "graphCircle" + fullTime + ".png");
+    // });
+
+    // var inputData = "simpleText\nSimple Text";
+    // var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    // saveAs(text, "dataCircle" + fullTime + ".txt");
+
+    // sweetAlert("Saved");
 });
 
 function sqr(number) {

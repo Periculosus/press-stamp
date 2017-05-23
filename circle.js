@@ -12,6 +12,24 @@ $("#fillDataCircleID").click(function () {
     $("input[name='angle']").val(37);
 });
 
+$("#saveCircleGraphID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
+
+    var graph = document.getElementById("coordinateSystemCircleId");
+    graph.toBlob(function(blob) {
+        saveAs(blob, "graphCircle" + fullTime + ".png");
+    });
+
+    var inputData = "simpleText\nSimple Text";
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataCircle" + fullTime + ".txt");
+
+    sweetAlert("Saved");
+});
+
 var circleIntersecting = new Graph({
     canvasId: 'coordinateSystemCircleId',
     minX: -100,
@@ -128,6 +146,7 @@ $("#calculateIntersectingAreaId").click(function () {
     // reDraw coordinate system in max lvl
     circleIntersecting.drawXAxis();
     circleIntersecting.drawYAxis();
+
 
     $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup>" +
                           "<br><b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup>");
