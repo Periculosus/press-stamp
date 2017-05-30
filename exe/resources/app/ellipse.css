@@ -1,8 +1,9 @@
 .classDataEllipse{
     display: inline-block;
     float: left;
-    border: inset 5px black;
+    border: inset 5px mediumvioletred;
     padding: 5px;
+    margin: 5px;
 }
 .ellipseGraphicsClass {
     /*display: none;*/

@@ -26,8 +26,22 @@ $("#fillGraphDataID").click(function () {
 });
 
 $("#saveGraphDataID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
 
-    sweetAlert("saved");
+    html2canvas(document.getElementsByClassName('ct-chart-line')).then(function(canvas) {
+        canvas.toBlob(function(blob) {
+            saveAs(blob, "graphEllipseRatio" + fullTime + ".png");
+        });
+    });
+
+    var inputData = $("textarea").text();
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataEllipseRatio" + fullTime + ".txt");
+
+    sweetAlert("Saved");
 });
 
 function coordinates(x) {
@@ -147,6 +161,18 @@ function readVarsDara(){
     window.lr2 = parseInt($("input[name='LR2']").val());
     window.angleF = parseInt($("input[name='angleF']").val());
 }
+function inputDataToTxt() {
+    $("textarea").append("(X; Y = K(X))\n" +
+        "\na1 = " + a1 +
+        "\nb1 = " + b1 +
+        "\na2 = " + a2 +
+        "\nb2 = " + b2 +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nlr1 = " + lr1 +
+        "\nlr2 = " + lr2 +
+        "\nangle = " + angleF + "\n\n");
+}
 /*
 function ratioGraphCalcUndDraw(number1, number2) {
     $("textarea").empty();
@@ -177,6 +203,8 @@ $("input[value='a12']").click(function () {
     $("textarea").empty();
     readVarsDara();
 
+    inputDataToTxt();
+
     var YKArray = [],
         XR12 = [];
 
@@ -204,6 +232,8 @@ $("input[value='b12']").click(function () {
     $("textarea").empty();
     readVarsDara();
 
+    inputDataToTxt();
+
     var YKArray = [],
         XR12 = [];
 
@@ -222,7 +252,8 @@ $("input[value='b12']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("b1/b2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "b1/b2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
@@ -230,6 +261,8 @@ $("input[value='b12']").click(function () {
 $("input[value='ab1']").click(function () {
     $("textarea").empty();
     readVarsDara();
+
+    inputDataToTxt();
 
     var YKArray = [],
         XR12 = [];
@@ -249,7 +282,8 @@ $("input[value='ab1']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("a1/b1 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "a1/b1 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
@@ -257,6 +291,8 @@ $("input[value='ab1']").click(function () {
 $("input[value='ab2']").click(function () {
     $("textarea").empty();
     readVarsDara();
+
+    inputDataToTxt();
 
     var YKArray = [],
         XR12 = [];
@@ -276,7 +312,8 @@ $("input[value='ab2']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("a2/b2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "a2/b2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
@@ -284,6 +321,8 @@ $("input[value='ab2']").click(function () {
 $("input[value='lr12']").click(function () {
     $("textarea").empty();
     readVarsDara();
+
+    inputDataToTxt();
 
     var YKArray = [],
         XR12 = [];
@@ -303,7 +342,8 @@ $("input[value='lr12']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("lr1/lr2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "lr1/lr2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
@@ -311,6 +351,8 @@ $("input[value='lr12']").click(function () {
 $("input[value='angle']").click(function () {
     $("textarea").empty();
     readVarsDara();
+
+    inputDataToTxt();
 
     var YKArray = [],
         XR12 = [];
@@ -329,7 +371,8 @@ $("input[value='angle']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("angle = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "angle = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });

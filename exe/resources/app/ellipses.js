@@ -1,5 +1,5 @@
 $("#drawGraphicsId").click(function () {
-    window.open('ellipseGraph.html', '', "width=710,height=570");
+    window.open('ellipseGraph.html', '', "width=705,height=620");
 });
 
 ////////////////////////////////////////////////////////// - stupidity
@@ -60,6 +60,24 @@ $("#fillDataEllipseID").click(function () {
     lr1 = $("input[name='LR1']").val();
     lr2 = $("input[name='LR2']").val();
     angleF = $("input[name='angleF']").val();
+});
+
+$("#saveEllipseGraphID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
+
+    var graph = document.getElementById("coordinateSystemId");
+    graph.toBlob(function(blob) {
+        saveAs(blob, "graphEllipse" + fullTime + ".png");
+    });
+
+    var inputData = $("#outputDataEllipseID").text();
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataEllipse" + fullTime + ".txt");
+
+    sweetAlert("Saved");
 });
 
 $("#idDataEllipse input").keydown(function(event) {

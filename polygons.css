@@ -1,8 +1,9 @@
 .polygonDataClass {
     display: inline-block;
     float: left;
-    border: inset 5px black;
+    border: inset 5px mediumpurple;
     padding: 5px;
+    margin: 5px;
 }
 .subjectPolygonInputDataClass {
     padding: 5px;

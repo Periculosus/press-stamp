@@ -1,5 +1,5 @@
 $("#drawCircleGraphID").click(function () {
-    window.open('circleGraph.html', '', "width=710,height=550");
+    window.open('circleGraph.html', '', "width=705,height=620");
 });
 
 $("#fillDataCircleID").click(function () {
@@ -23,7 +23,7 @@ $("#saveCircleGraphID").click(function () {
         saveAs(blob, "graphCircle" + fullTime + ".png");
     });
 
-    var inputData = "simpleText\nSimple Text";
+    var inputData = $("#outputDataID").text();
     var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
     saveAs(text, "dataCircle" + fullTime + ".txt");
 
@@ -148,7 +148,15 @@ $("#calculateIntersectingAreaId").click(function () {
     circleIntersecting.drawYAxis();
 
 
-    $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup>" +
-                          "<br><b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup>");
+    $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup><br> " +
+                          "<b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup><br>");
+
+    $("#outputDataID").append("R1 = " + R1 +
+        ", R2 = " + R2 +
+        ", LR1 = " + LR1 +
+        ", LR2 = " + LR2 +
+        ", <br>upperR1 = " + upperR1 +
+        ", lowerR2 = " + lowerR2 +
+        ", angle = " + angle);
 
 });

@@ -1,8 +1,9 @@
 .circleDataClass {
     display: inline-block;
     float: left;
-    border: inset 5px black;
+    border: inset 5px dodgerblue;
     padding: 5px;
+    margin: 5px;
 }
 .circleGraphicsClass {
     display: inline-block;

@@ -32,16 +32,27 @@ h3 {
     font-family: 'Ultra', sans-serif;
     font-size: 16px;
     line-height: 42px;
+    text-align: center;
     text-transform: uppercase;
     /*text-shadow: 0 2px white, 0 3px #777;*/
 }
 .coordinateSystemClass {
     display: inline-block;
-    border: outset 5px black;
+    border: outset 5px mediumseagreen;
     float: left;
     margin-left: 10px;
 }
 .ct-label {
     font-size: 14px;
     color: #000000;
+}
+line.ct-horizontal:first-child {
+    stroke: black;
+    stroke-dasharray: 0px;
+    stroke-width: 2px;
+}
+line.ct-vertical:nth-child(14) {
+    stroke: black;
+    stroke-dasharray: 0px;
+    stroke-width: 2px;
 }

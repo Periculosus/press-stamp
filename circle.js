@@ -1,5 +1,5 @@
 $("#drawCircleGraphID").click(function () {
-    window.open('circleGraph.html', '', "width=710,height=550");
+    window.open('circleGraph.html', '', "width=705,height=620");
 });
 
 $("#fillDataCircleID").click(function () {
@@ -151,11 +151,11 @@ $("#calculateIntersectingAreaId").click(function () {
     $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup><br> " +
                           "<b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup><br>");
 
-    $("#outputDataID").append("<br>R1 = " + R1 +
+    $("#outputDataID").append("R1 = " + R1 +
         ", R2 = " + R2 +
         ", LR1 = " + LR1 +
         ", LR2 = " + LR2 +
-        ", upperR1 = " + upperR1 +
+        ", <br>upperR1 = " + upperR1 +
         ", lowerR2 = " + lowerR2 +
         ", angle = " + angle);
 

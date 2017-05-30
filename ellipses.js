@@ -1,5 +1,5 @@
 $("#drawGraphicsId").click(function () {
-    window.open('ellipseGraph.html', '', "width=710,height=570");
+    window.open('ellipseGraph.html', '', "width=705,height=620");
 });
 
 ////////////////////////////////////////////////////////// - stupidity
