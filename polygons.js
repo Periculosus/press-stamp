@@ -36,7 +36,24 @@ $("#fillDataPolygonID").click(function () {
         $(this).val((30 + 25 * Math.cos((index + 1) * regularAngle)).toFixed(0));
     });
 
-    // sweetAlert("is working");
+});
+
+$("#savePolygonGraphID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
+
+    var graph = document.getElementById("coordinateSystemId");
+    graph.toBlob(function(blob) {
+        saveAs(blob, "graphPolygon" + fullTime + ".png");
+    });
+
+    var inputData = $("#coordinatesOutputsId").text();
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataPolygon" + fullTime + ".txt");
+
+    sweetAlert("Saved");
 });
 
 $("#runScriptId").click(function () {

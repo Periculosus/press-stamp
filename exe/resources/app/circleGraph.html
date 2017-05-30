@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>The Area of Intersecting Circles</title>
 
-    <link rel="stylesheet" href="general.css">
-    <link rel="stylesheet" href="circle.css">
     <link rel="stylesheet" href="libs/sweet-alert/sweetalert.css">
     <link rel="stylesheet" href="libs/chartist/chartist.min.css">
+    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="circle.css">
+
     <script>
         delete window.require;
         delete window.exports;
@@ -22,21 +23,37 @@
         <br>LR<sub>1</sub> = <input type="text" name="LR1">
         <br>LR<sub>2</sub> = <input type="text" name="LR2">
         <br>Угол = <input type="text" name="angle">
+
+        <br><button id="fillGraphDataID">Заполнить</button>
+
         <br><b>Соотношения</b>
         <br><input type="radio" name="graphic" value="R12">K<sub>i</sub>(R<sub>1</sub>/R<sub>2</sub>)
         <br><input type="radio" name="graphic" value="LR12">K<sub>i</sub>(LR<sub>1</sub>/LR<sub>2</sub>)
         <br><input type="radio" name="graphic" value="RLR1">K<sub>i</sub>(LR<sub>1</sub>/R<sub>1</sub>)
         <br><input type="radio" name="graphic" value="RLR2">K<sub>i</sub>(LR<sub>2</sub>/R<sub>2</sub>)
         <br><input type="radio" name="graphic" value="angle">K<sub>i</sub>(angle)
+
+        <br><button id="saveGraphDataID">Сохранить</button>
+
         <br><textarea rows="14" cols="15" readonly></textarea>
     </div>
-    <!--<canvas id="coordinateSystemCircleId" class="coordinateSystemClass" width="500" height="500"></canvas>-->
+
     <div id="coordinateSystemCircleId" class="chartistCircleGraphClass" style=""></div>
 
     <!-- XenoScripts -->
     <script src="libs/jquery-3.1.1.min.js"></script>
+
     <script src="libs/sweet-alert/sweetalert.min.js"></script>
     <script src="libs/chartist/chartist.min.js"></script>
+    <script src="libs/file-saver/FileSaver.min.js"></script>
+    <script src="libs/file-saver/canvas-toBlob.js"></script>
+    <script src="libs/html2canvas/html2canvas.min.js"></script>
+    <script src="libs/html2canvas/html2canvas.svg.js"></script>
+    <script src="libs/html2canvas/canvas2image.js"></script>
+
+    <script type="text/javascript" src="http://canvg.github.io/canvg/rgbcolor.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/StackBlur.js"></script>
+    <script type="text/javascript" src="http://canvg.github.io/canvg/canvg.js"></script>
 
     <!-- Scripts for canvas graphic -->
     <script src="polygons-Sutherland-Hodgeman.js"></script>

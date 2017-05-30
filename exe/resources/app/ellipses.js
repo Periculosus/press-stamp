@@ -1,14 +1,8 @@
-/**
- * Created by Alex on 30.10.2016.
-
-$('input').on('keypress', function() {
-    return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8;
-});
-*/
 $("#drawGraphicsId").click(function () {
     window.open('ellipseGraph.html', '', "width=710,height=570");
 });
 
+////////////////////////////////////////////////////////// - stupidity
 $("input[name='a1']").keyup(function() {
     window.a1 = $(this).val();
 }).keyup();
@@ -44,6 +38,29 @@ $("input[name='LR2']").keyup(function() {
 $("input[name='angleF']").keyup(function() {
     window.angleF = $( this ).val();
 }).keyup();
+//////////////////////////////////////////////////////////
+
+$("#fillDataEllipseID").click(function () {
+    $("input[name='a1']").val(21);
+    $("input[name='b1']").val(17);
+    $("input[name='a2']").val(25);
+    $("input[name='b2']").val(15);
+    $("input[name='R1']").val(70);
+    $("input[name='R2']").val(80);
+    $("input[name='LR1']").val(30);
+    $("input[name='LR2']").val(35);
+    $("input[name='angleF']").val(45);
+
+    a1 = $("input[name='a1']").val();
+    b1 = $("input[name='b1']").val();
+    a2 = $("input[name='a2']").val();
+    b2 = $("input[name='b2']").val();
+    R1 = $("input[name='R1']").val();
+    R2 = $("input[name='R2']").val();
+    lr1 = $("input[name='LR1']").val();
+    lr2 = $("input[name='LR2']").val();
+    angleF = $("input[name='angleF']").val();
+});
 
 $("#idDataEllipse input").keydown(function(event) {
     if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {

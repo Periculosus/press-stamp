@@ -13,6 +13,23 @@ function drawLineGraph(xArrays, yArrays) {
     });
 }
 
+$("#fillGraphDataID").click(function () {
+    $("input[name='a1']").val(21);
+    $("input[name='b1']").val(17);
+    $("input[name='a2']").val(25);
+    $("input[name='b2']").val(15);
+    $("input[name='R1']").val(70);
+    $("input[name='R2']").val(80);
+    $("input[name='LR1']").val(30);
+    $("input[name='LR2']").val(35);
+    $("input[name='angleF']").val(45);
+});
+
+$("#saveGraphDataID").click(function () {
+
+    sweetAlert("saved");
+});
+
 function coordinates(x) {
     var f, f1, f2, f1A, f1B, f1C, fi, fInt;
 
@@ -63,7 +80,6 @@ function calculateK() {
     var a, b, n, step, SAreaIntegral;
     var nArray = [];
 
-
     while (x1 <= R1 / 2 && MIN > 0.0001) {
         try {
             result = coordinates(x1);
@@ -79,8 +95,6 @@ function calculateK() {
         }
     }
     ////////////////////////////////////////
-
-
     while (x2 <= R1) {
         try {
             result = coordinates(x2);
@@ -120,7 +134,6 @@ function calculateK() {
     var KAreaEllipse1 = SAreaIntegral / SAreaEllipse1;
 
     return KAreaEllipse1;
-
 }
 
 function readVarsDara(){
@@ -176,6 +189,9 @@ $("input[value='a12']").click(function () {
         a1 = a1 + 5;
         a2 = a2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a1/a2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -200,6 +216,9 @@ $("input[value='b12']").click(function () {
         b1 = b1 + 5;
         b2 = b2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("b1/b2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -224,6 +243,9 @@ $("input[value='ab1']").click(function () {
         b1 = b1 + 5;
         a1 = a1 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a1/b1");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -248,6 +270,9 @@ $("input[value='ab2']").click(function () {
         a2 = a2 + 5;
         b2 = b2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("a2/b2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -272,6 +297,9 @@ $("input[value='lr12']").click(function () {
         lr1 = lr1 + 5;
         lr2 = lr2 + 10;
     }
+    XR12.push(" ");
+    XR12.push("lr1/lr2");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
@@ -279,7 +307,6 @@ $("input[value='lr12']").click(function () {
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
-
 
 $("input[value='angle']").click(function () {
     $("textarea").empty();
@@ -293,9 +320,12 @@ $("input[value='angle']").click(function () {
             YKArray[i] = 0;
         }
         else YKArray[i] = calculateK();
-        XR12[i] = (angleF).toFixed(3);
+        XR12[i] = (angleF).toFixed(0);
         angleF = angleF + 5;
     }
+    XR12.push(" ");
+    XR12.push("Angle");
+    XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){

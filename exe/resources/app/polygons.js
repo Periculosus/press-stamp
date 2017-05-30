@@ -1,3 +1,44 @@
+$("#fillDataPolygonID").click(function () {
+    $("#upperCircleRadiusId").val(90);
+    $("#lowerCircleRadiusId").val(100);
+
+    // http://stackoverflow.com/questions/3436453/calculate-coordinates-of-a-regular-polygons-vertices
+    /*
+     The angle you need is angle = 2 * pi / numPoints.
+
+     Then starting vertically above the origin with the size of the polygon being given by radius:
+
+     for (int i = 0; i < numPoints; i++)
+     {
+     x = centreX + radius * sin(i * angle);
+     y = centreY + radius * cos(i * angle);
+     }
+     */
+
+    $("input[name='xUpper']").each(function (index) {
+        var regularAngle = 2 * Math.PI / $("#subjectPolygonVertexCountId").val();
+        $(this).val((40 + 20 * Math.sin((index + 1) * regularAngle)).toFixed(0));
+    });
+    $("input[name='yUpper']").each(function (index) {
+        var regularAngle = 2 * Math.PI / $("#subjectPolygonVertexCountId").val();
+        $(this).val((40 + 20 * Math.cos((index + 1) * regularAngle)).toFixed(0));
+    });
+
+    $("input[name='xLower']").each(function (index) {
+        var regularAngle = 2 * Math.PI / $("#clipPolygonVertexCountId").val();
+        if(index == 1){
+            $(this).val(70);
+        }
+        else $(this).val((30 + 20 * Math.sin((index + 1) * regularAngle)).toFixed(0));
+    });
+    $("input[name='yLower']").each(function (index) {
+        var regularAngle = 2 * Math.PI / $("#clipPolygonVertexCountId").val();
+        $(this).val((30 + 25 * Math.cos((index + 1) * regularAngle)).toFixed(0));
+    });
+
+    // sweetAlert("is working");
+});
+
 $("#runScriptId").click(function () {
     $("#subjectPolygonInputDataId").empty();
     $("#clipPolygonInputDataId").empty();
@@ -10,21 +51,21 @@ $("#runScriptId").click(function () {
 
     $("#subjectPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>верхней</b> пластине<br><i>(подвижной)</i>");
     for (var i = 0; i < subjectPolygonVertexCount; i++) {
-        $("#subjectPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
-            "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'>");
+        $("#subjectPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xUpper'> " +
+                                                    "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yUpper'>");
     }
 
     $("#clipPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>нижней</b> пластине<br><i>(неподвижной)</i>");
     for (i = 0; i < clipPolygonVertexCount; i++) {
-        $("#clipPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='x'> " +
-            "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='y'>");
+        $("#clipPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xLower'> " +
+                                                    "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yLower'>");
     }
 
     $("#inputDataId").show();
     // reDraw coordinate system in max lvl
     myGraph.drawXAxis();
     myGraph.drawYAxis();
-})
+});
 
 $("#readInputId").click(function () {
     $("#coordinatesOutputsId").empty();
@@ -43,10 +84,10 @@ $("#readInputId").click(function () {
     var crutchX = [];
     var crutchY = [];
 
-    $("#subjectPolygonInputDataId input[name$='x']").each(function (index) {
+    $("#subjectPolygonInputDataId input[name$='xUpper']").each(function (index) {
         crutchX[index] = parseInt($(this).val());
     });
-    $("#subjectPolygonInputDataId input[name^='y']").each(function (index) {
+    $("#subjectPolygonInputDataId input[name^='yUpper']").each(function (index) {
         crutchY[index] = parseInt($(this).val());
     });
     for(var rows = 0; rows < crutchX.length; rows++) {
@@ -56,10 +97,10 @@ $("#readInputId").click(function () {
     crutchX = [];
     crutchY = [];
 
-    $("div#clipPolygonInputDataId input[name^='x']").each(function (index) {
+    $("div#clipPolygonInputDataId input[name^='xLower']").each(function (index) {
         crutchX[index] = parseInt($(this).val());
     });
-    $("div#clipPolygonInputDataId input[name^='y']").each(function (index) {
+    $("div#clipPolygonInputDataId input[name^='yLower']").each(function (index) {
         crutchY[index] = parseInt($(this).val());
     });
     for(rows = 0; rows < crutchX.length; rows++) {
@@ -111,4 +152,4 @@ $("#readInputId").click(function () {
     //radius from R1 ro ellipse 1
 //            myGraph.drawLine(function(){}, 0, 0, centroidAxis[0], centroidAxis[1], 'black', 1);
 
-})
+});

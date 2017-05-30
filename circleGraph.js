@@ -27,57 +27,34 @@ $("#saveGraphDataID").click(function () {
     var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
     var fullTime = "-date" + date + "-time" + time;
 
-    html2canvas($("#coordinateSystemCircleId"), {
-        onrendered: function(canvas) {
-            // Convert and download as image
-            Canvas2Image.saveAsPNG(canvas);
-            // $("#img-out").append(canvas);
-            // Clean up
-            //document.body.removeChild(canvas);
-        }
+    // var svg = document.getElementById('coordinateSystemCircleId');
+    // var canvas = document.createElement('canvas');
+    // canvas.height = svg.getAttribute('height');
+    // canvas.width = svg.getAttribute('width');
+    // canvg(canvas, svg.parentNode.innerHTML.trim());
+    // var dataURL = canvas.toDataURL('image/png');
+    // var data = atob(dataURL.substring('data:image/png;base64,'.length)),
+    //     asArray = new Uint8Array(data.length);
+    //
+    // for (var i = 0, len = data.length; i < len; ++i) {
+    //     asArray[i] = data.charCodeAt(i);
+    // }
+    //
+    // var blob = new Blob([asArray.buffer], {type: 'image/png'});
+    // saveAs(blob, 'export_' + Date.now() + '.png');
+
+
+    html2canvas(document.getElementsByClassName('ct-chart-line')).then(function(canvas) {
+        canvas.toBlob(function(blob) {
+            saveAs(blob, "graphCircleRatio" + fullTime + ".png");
+        });
     });
 
-    // saveSvgAsPng(document.getElementById("coordinateSystemCircleId"), "diagram.png", {scale: 0.5});
-    // saveSvgAsPng(document.getElementById("coordinateSystemCircleId"), "diagram.png");
+    var inputData = $("textarea").text();
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataCircleRatio" + fullTime + ".txt");
 
-    // var canvas = document.getElementById("coordinateSystemCircleId"),
-    //     context = canvas.getContext("2d");
-    //
-    // var image = new Image;
-    // image.src = "fallback.svg";
-    // image.onload = function() {
-    //     context.drawImage(image, 0, 0);
-    //
-    //     var a = document.createElement("a");
-    //     a.download = "fallback.png";
-    //     a.href = canvas.toDataURL("image/png");
-    //     a.click();
-    // };
-
-    // html2canvas($("body"), {
-    //     onrendered: function(graph) {
-    //         graph.toBlob(function(blob) {
-    //             saveAs(blob, "graphCircle" + fullTime + ".png");
-    //         });
-    //     }
-    // });
-
-    // html2canvas(document.getElementById("coordinateSystemCircleId")).then(function(canvas) {
-    //     canvas.toBlob(function(blob) {
-    //         saveAs(blob, "graphCircle" + fullTime + ".png");
-    //     });
-    // });
-
-    // var graph = document.getElementById("coordinateSystemCircleId");
-    // graph.toBlob(function(blob) {
-    //     saveAs(blob, "graphCircle" + fullTime + ".png");
-    // });
-
-    // var inputData = "simpleText\nSimple Text";
-    // var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
-    // saveAs(text, "dataCircle" + fullTime + ".txt");
-
-    // sweetAlert("Saved");
+    sweetAlert("Saved");
 });
 
 function sqr(number) {
@@ -97,8 +74,6 @@ function intersectingCircleCalc(R1, R2, LR1, LR2, angle) {
     return K_K;
 }
 
-
-
 $("input[value='R12']").click(function () {
     $("textarea").empty();
 
@@ -107,6 +82,13 @@ $("input[value='R12']").click(function () {
     var LR1 = parseInt($("input[name='LR1']").val());
     var LR2 = parseInt($("input[name='LR2']").val());
     var angle = parseInt($("input[name='angle']").val());
+
+    $("textarea").append("(X = R1/R2; Y = K(R1/R2))\n" +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nLR1 = " + LR1 +
+        "\nLR2 = " + LR2 +
+        "\nangle = " + angle + "\n\n");
 
     var YKArray = [],
         XR12 = [];
@@ -127,10 +109,13 @@ $("input[value='R12']").click(function () {
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("R1/R2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                             "R1/R2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
+    // $("textarea").append();
 });
+
 $("input[value='LR12']").click(function () {
     $("textarea").empty();
 
@@ -139,6 +124,13 @@ $("input[value='LR12']").click(function () {
     var LR1 = parseInt($("input[name='LR1']").val());
     var LR2 = parseInt($("input[name='LR2']").val());
     var angle = parseInt($("input[name='angle']").val());
+
+    $("textarea").append("(X = R1/R2; Y = K(R1/R2))\n" +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nLR1 = " + LR1 +
+        "\nLR2 = " + LR2 +
+        "\nangle = " + angle + "\n\n");
 
     var YKArray = [],
         XR12 = [];
@@ -157,11 +149,14 @@ $("input[value='LR12']").click(function () {
     XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
+    $("textarea").append("(X = LR1/LR2; Y = K(LR1/LR2))\n");
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("LR1/LR2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                             "LR1/LR2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
+
 $("input[value='RLR1']").click(function () {
     $("textarea").empty();
 
@@ -170,6 +165,13 @@ $("input[value='RLR1']").click(function () {
     var LR1 = parseInt($("input[name='LR1']").val());
     var LR2 = parseInt($("input[name='LR2']").val());
     var angle = parseInt($("input[name='angle']").val());
+
+    $("textarea").append("(X = R1/R2; Y = K(R1/R2))\n" +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nLR1 = " + LR1 +
+        "\nLR2 = " + LR2 +
+        "\nangle = " + angle + "\n\n");
 
     var YKArray = [],
         XR12 = [];
@@ -188,11 +190,14 @@ $("input[value='RLR1']").click(function () {
     XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
+    $("textarea").append("(X = LR1/R1; Y = K(LR1/R1))\n");
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("LR1/R1 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                             "LR1/R1 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
+
 $("input[value='RLR2']").click(function () {
     $("textarea");
 
@@ -201,6 +206,13 @@ $("input[value='RLR2']").click(function () {
     var LR1 = parseInt($("input[name='LR1']").val());
     var LR2 = parseInt($("input[name='LR2']").val());
     var angle = parseInt($("input[name='angle']").val());
+
+    $("textarea").append("(X = R1/R2; Y = K(R1/R2))\n" +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nLR1 = " + LR1 +
+        "\nLR2 = " + LR2 +
+        "\nangle = " + angle + "\n\n");
 
     var YKArray = [],
         XR12 = [];
@@ -219,11 +231,14 @@ $("input[value='RLR2']").click(function () {
     XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
+    $("textarea").append("(X = LR2/R2; Y = K(LR2/R2))\n");
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("LR2/R2 = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "LR2/R2 = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });
+
 $("input[value='angle']").click(function () {
     $("textarea").empty();
 
@@ -233,10 +248,17 @@ $("input[value='angle']").click(function () {
     var LR2 = parseInt($("input[name='LR2']").val());
     var angle = parseInt($("input[name='angle']").val());
 
+    $("textarea").append("(X = R1/R2; Y = K(R1/R2))\n" +
+        "\nR1 = " + R1 +
+        "\nR2 = " + R2 +
+        "\nLR1 = " + LR1 +
+        "\nLR2 = " + LR2 +
+        "\nangle = " + angle + "\n\n");
+
     var YKArray = [],
         XR12 = [];
 
-    for (var i = 0; i < 15; i++) {
+    for (var i = 0; i < 10; i++) {
         if(isNaN(intersectingCircleCalc(R1, R2, LR1, LR2, angle)) == true){
             YKArray[i] = 0;
         }
@@ -249,8 +271,10 @@ $("input[value='angle']").click(function () {
     XR12.push(" ");
     drawLineGraph(XR12, YKArray);
 
+    $("textarea").append("(X = angle; Y = K(angle))\n");
     for(var j = 0; j < XR12.length; j++){
-        $("textarea").append("angle = " + XR12[j] + "\n" +
+        $("textarea").append((j+1) + "-----------\n"+
+                            "angle = " + XR12[j] + "\n" +
                              "K = " + YKArray[j].toFixed(3) + "\n");
     }
 });

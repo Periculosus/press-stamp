@@ -62,6 +62,24 @@ $("#fillDataEllipseID").click(function () {
     angleF = $("input[name='angleF']").val();
 });
 
+$("#saveEllipseGraphID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
+
+    var graph = document.getElementById("coordinateSystemId");
+    graph.toBlob(function(blob) {
+        saveAs(blob, "graphEllipse" + fullTime + ".png");
+    });
+
+    var inputData = $("#outputDataEllipseID").text();
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataEllipse" + fullTime + ".txt");
+
+    sweetAlert("Saved");
+});
+
 $("#idDataEllipse input").keydown(function(event) {
     if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {
     }

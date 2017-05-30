@@ -30,8 +30,11 @@
         <br>LR2 = <input type="text" name="LR2"></p>
         <p><b>Угол поворота верхней пластины</b>
         <br>Angle = <input type="text" name="angle"></p>
+
+        <br><button id="fillDataCircleID" class="fillDataCircleClass">Заполнить тестовыми данными</button>
         <br><button id="calculateIntersectingAreaId" class="calculateIntersectingAreaClass">Просчитать площадь пересечения</button>
         <br><button id="drawCircleGraphID" class="drawCircleGraphClass">Графики зависимостей</button>
+        <br><button id="saveCircleGraphID" class="saveCircleGraphClass">Сохранить</button>
         <button id="infoId" class="infoClass"><b>[?]</b></button>
 
         <br><output id="outputDataID" class="outputDataClass"></output>
@@ -41,6 +44,8 @@
     <!-- XenoScripts -->
     <script src="libs/jquery-3.1.1.min.js"></script>
     <script src="libs/sweet-alert/sweetalert.min.js"></script>
+    <script src="libs/file-saver/FileSaver.min.js"></script>
+    <script src="libs/file-saver/canvas-toBlob.js"></script>
 
     <!-- Scripts for canvas graphic -->
     <script src="polygons-Sutherland-Hodgeman.js"></script>

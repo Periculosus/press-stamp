@@ -2,6 +2,34 @@ $("#drawCircleGraphID").click(function () {
     window.open('circleGraph.html', '', "width=710,height=550");
 });
 
+$("#fillDataCircleID").click(function () {
+    $("input[name='upperR1']").val(83);
+    $("input[name='lowerR2']").val(93);
+    $("input[name='R1']").val(30);
+    $("input[name='R2']").val(33);
+    $("input[name='LR1']").val(42);
+    $("input[name='LR2']").val(48);
+    $("input[name='angle']").val(37);
+});
+
+$("#saveCircleGraphID").click(function () {
+    var today = new Date();
+    var date = today.getFullYear() + "." + (today.getMonth() + 1) + "." + today.getDate();
+    var time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    var fullTime = "-date" + date + "-time" + time;
+
+    var graph = document.getElementById("coordinateSystemCircleId");
+    graph.toBlob(function(blob) {
+        saveAs(blob, "graphCircle" + fullTime + ".png");
+    });
+
+    var inputData = "simpleText\nSimple Text";
+    var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
+    saveAs(text, "dataCircle" + fullTime + ".txt");
+
+    sweetAlert("Saved");
+});
+
 var circleIntersecting = new Graph({
     canvasId: 'coordinateSystemCircleId',
     minX: -100,
@@ -41,37 +69,13 @@ function intersectingCircleCalc() {
     }
 }
 
-
- window.upperR1 = 0;
- window.lowerR2 = 0;
- window.R1 = 0;
- window.R2 = 0;
- window.LR1 = 0;
- window.LR2 = 0;
- window.angle = 0;
-
-
-/*
- K_d:=sqrt(sqr(K_p1)+sqr(K_p2)-2*K_p1*K_p2*cos(K_fi*pi/180));
- K_w1:=K_p1/K_r1;
- K_w2:=K_p2/K_r2;
- K_w:=K_r2/K_r1;
- K_cos_alpha:=(sqr(K_r2)-sqr(K_r1)-sqr(K_d))/(-2*K_r1*K_d);
- K_cos_beta:=(sqr(K_r1)-sqr(K_r2)-sqr(K_d))/(-2*K_r2*K_d);
- K_alpha:=arccos(K_cos_alpha)*180/pi;
- K_beta:=arccos(K_cos_beta)*180/pi;
- K_sin_alpha:=sin(K_alpha*pi/180);
- K_A:=K_sin_alpha;
- K_K:=(K_alpha*(pi/180)-0.5*sin(2*K_alpha*(pi/180))+sqr(K_w)*(K_beta*(pi/180)-0.5*sin(2*K_beta*(pi/180))))/pi;
- K_S_per:=K_K*pi*sqr(K_r1);
-
- K_p1 - это у вас lr1
- K_p2 - это у вас lr2
- K_r1 - это у вас а1=b1
- K_r2 - это у вас а2=b2
- K_S_per - площадь пересечения
- K_K - коэффициент пересеения
- */
+window.upperR1 = 0;
+window.lowerR2 = 0;
+window.R1 = 0;
+window.R2 = 0;
+window.LR1 = 0;
+window.LR2 = 0;
+window.angle = 0;
 
 function sqr(number) {
     return Math.pow(number, 2);
@@ -142,6 +146,7 @@ $("#calculateIntersectingAreaId").click(function () {
     // reDraw coordinate system in max lvl
     circleIntersecting.drawXAxis();
     circleIntersecting.drawYAxis();
+
 
     $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup>" +
                           "<br><b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup>");
