@@ -47,7 +47,7 @@ $("#tip4").tipsy({
     fade: true
 });
 $("#tip5").tipsy({
-    gravity: 'nw',
+    gravity: 'w',
     fade: true
 });
 $("#tip6").tipsy({
