@@ -1,5 +1,6 @@
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistCircleGraphClass").empty();
+    $("#coordinateSystemCircleId").append("<b class='yAxi'> K</b>");
     new Chartist.Line('.chartistCircleGraphClass', {
         labels: xArrays,
         series: [
@@ -105,7 +106,7 @@ $("input[value='R12']").click(function () {
     XR12.push(" ");
     XR12.push("R1/R2");
     XR12.push(" ");
-    // YKArray.push("K");
+
     drawLineGraph(XR12, YKArray);
 
     for(var j = 0; j < XR12.length; j++){

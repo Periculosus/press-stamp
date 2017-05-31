@@ -285,11 +285,31 @@ Graph.prototype.drawCoordinate = function (equation, xCoordinate, yCoordinate, d
     this.transformContext();
     context.beginPath();
 
-    dotWidth = dotWidth || 3;
-    dotLength = dotLength || 3;
+    dotWidth = dotWidth || 1;
+    dotLength = dotLength || 1;
     context.fillRect(xCoordinate, yCoordinate, dotWidth, dotLength);
-    // context.scale(1,-1);
-    // context.fillText(simpleText, xCoordinate+2, yCoordinate+2);
+
+    context.restore();
+    context.lineJoin = 'round';
+    context.restore();
+};
+///////////////////////////////////////////////////////////////////////////////////////
+Graph.prototype.drawText = function (equation, simpleText, xCoordinate, yCoordinate, dotWidth, dotLength) {
+    var context = this.context;
+    context.save();
+    context.save();
+    this.transformContext();
+    context.beginPath();
+
+    dotWidth = dotWidth || 0;
+    dotLength = dotLength || 0;
+    simpleText = simpleText || "";
+
+    context.font = "11px Times New Roman";
+    context.fillRect(xCoordinate, yCoordinate, dotWidth, dotLength);
+    context.scale(1,-1);
+    context.fillText(simpleText, xCoordinate, yCoordinate);
+
 
     context.restore();
     context.lineJoin = 'round';
