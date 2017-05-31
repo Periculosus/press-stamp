@@ -11,12 +11,22 @@ button {
     border: none;
     color: lightgray;
     padding: 3px 7px;
-    text-align: center;
+    /*text-align: center;*/
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     text-decoration: none;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+}
+button img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
 }
 button:hover {
     background-color: mediumseagreen;
@@ -27,14 +37,17 @@ p {
 }
 h3 {
     margin: 1em 0 0.5em 0;
-    color: #343434;
+    color: #292929;
     font-weight: 900;
     font-family: 'Ultra', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 42px;
     text-align: center;
     text-transform: uppercase;
-    /*text-shadow: 0 2px white, 0 3px #777;*/
+    text-shadow: 0 2px white, 0 3px #777;
+    background-color: lightgray;
+    opacity: 0.8;
+    border-radius: 15px;
 }
 .coordinateSystemClass {
     display: inline-block;

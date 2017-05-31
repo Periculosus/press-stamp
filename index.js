@@ -17,10 +17,10 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
 }
 else {
     $('#idCircleCalc').click(function () {
-        window.open('circle.html', '', "width=1060,height=720");
+        window.open('circle.html', '', "width=1040,height=720");
     });
     $('#idEllipseCalc').click(function () {
-        window.open('ellipse.html', '', "width=1005,height=700");
+        window.open('ellipse.html', '', "width=985,height=750");
     });
     $('#idPolygonsCalc').click(function () {
         window.open('polygons.html', '', "width=960,height=700");

@@ -6,16 +6,45 @@ button {
     border: none;
     color: white;
     padding: 3px 7px;
-    text-align: center;
+
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 900;
     text-decoration: none;
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
     width: 200px;
-    height: 50px;
+    height: 70px;
     opacity: 0.9;
+
 }
+.classCircleCalc img{
+    width: 60px;
+    height: 60px;
+}
+.classEllipseCalc img{
+    width: 64px;
+    height: 40px;
+}
+.classPolygonsCalc img{
+    width: 64px;
+    height: 48px;
+}
+.infoClass img{
+    width: 60px;
+    height: 60px;
+}
+button img {
+    padding-right: 5px;
+}
+
 button:hover {
     background-color: lightcoral;
     color: white;
