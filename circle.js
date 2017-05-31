@@ -1,5 +1,5 @@
 $("#drawCircleGraphID").click(function () {
-    window.open('circleGraph.html', '', "width=705,height=650");
+    window.open('circleGraph.html', '', "width=705,height=700");
 });
 
 $("#fillDataCircleID").click(function () {
