@@ -146,17 +146,18 @@ $("#calculateIntersectingAreaId").click(function () {
     // reDraw coordinate system in max lvl
     circleIntersecting.drawXAxis();
     circleIntersecting.drawYAxis();
-
+    circleIntersecting.drawText(function(){}, "Y", -20, -90);
+    circleIntersecting.drawText(function(){}, "X", 90, 15);
 
     $("#outputDataID").append("<b>Площадь перекрытия S  = </b>" + K_S_per.toFixed(5) + " см<sup>2</sup><br> " +
                           "<b>Коэффициент перекрытия K = </b>" + K_K.toFixed(5) + " см<sup>2</sup><br>");
 
-    $("#outputDataID").append("R1 = " + R1 +
-        ", R2 = " + R2 +
-        ", LR1 = " + LR1 +
-        ", LR2 = " + LR2 +
-        ", <br>upperR1 = " + upperR1 +
-        ", lowerR2 = " + lowerR2 +
-        ", angle = " + angle);
+    $("#outputDataID").append("<b>R1 = </b>" + R1 +
+        ", <b>R2 = </b>" + R2 +
+        ", <b>LR1 = </b>" + LR1 +
+        ", <b>LR2 = </b>" + LR2 +
+        ", <br><b>upperR1 = </b>" + upperR1 +
+        ", <b>upperR2 = </b>" + lowerR2 +
+        ", <b>angle = </b>" + angle);
 
 });

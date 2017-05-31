@@ -254,9 +254,11 @@ $('#idCalculateArea').click(function () {
         myGraph.drawCoordinate(function(){}, x1Intersecting, y1Intersecting, 1.3, 1.3);
         myGraph.drawCoordinate(function(){}, x2Intersecting, y2Intersecting, 1.3, 1.3);
 
-
         // reDraw coordinate system in max lvl
         myGraph.drawXAxis();
         myGraph.drawYAxis();
+        myGraph.drawText(function(){}, "Y", -20, -90);
+        myGraph.drawText(function(){}, "X", 90, 15);
+
     }
 });

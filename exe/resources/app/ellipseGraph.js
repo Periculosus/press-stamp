@@ -1,5 +1,6 @@
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistEllipseGraphClass").empty();
+    $("#coordinateSystemEllipseGraphicsId").append("<b class='yAxi'> K</b>");
     new Chartist.Line('.chartistEllipseGraphClass', {
         labels: xArrays,
         series: [

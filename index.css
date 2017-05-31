@@ -1,6 +1,5 @@
 body {
     background-image: url('img/blueprint.jpg');
-
 }
 button {
     background-color: #555555;
@@ -13,6 +12,9 @@ button {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+    width: 200px;
+    height: 50px;
+    opacity: 0.9;
 }
 button:hover {
     background-color: lightcoral;
@@ -28,4 +30,75 @@ h3 {
     text-align: center;
     text-transform: uppercase;
     text-shadow: 0 2px white, 0 3px #777;
+}
+div h3 {
+    background-color: lightgray;
+    opacity: 0.8;
+}
+.buttonsClass {
+    display: inline-block;
+    float: left;
+}
+.imageClass {
+    display: inline-block;
+    float: right;
+}
+.pressStamp {
+    width: 450px;
+    height: 750px;
+    opacity: 0.9;
+    border: outset 5px lightgray;
+}
+.tipClass {
+    z-index: 3;
+    /*display: none;*/
+    opacity: 0;
+    position: fixed;
+    /*background-color: black;*/
+    width: 40px;
+    height: 40px;
+
+}
+.tipClass title {
+    font-size: 8px;
+}
+.tipc1 {
+    margin-top: 270px;
+    margin-left: 414px;
+}
+.tipc2 {
+    margin-top: 142px;
+    margin-left: 414px;
+}
+.tipc3 {
+    margin-top: 225px;
+    margin-left: 5px;
+}
+.tipc4 {
+    margin-top: 255px;
+    margin-left: 10px;
+}
+.tipc5 {
+    margin-top: 15px;
+    margin-left: 5px;
+}
+.tipc6 {
+    margin-top: 315px;
+    margin-left: 414px;
+}
+.tipc7 {
+    margin-top: 225px;
+    margin-left: 414px;
+}
+.tipc8 {
+    margin-top: 95px;
+    margin-left: 414px;
+}
+.tipc9 {
+    margin-top: 285px;
+    margin-left: 5px;
+}
+.tipc10 {
+    margin-top: 65px;
+    margin-left: 5px;
 }

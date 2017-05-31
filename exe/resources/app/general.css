@@ -56,3 +56,6 @@ line.ct-vertical:nth-child(14) {
     stroke-dasharray: 0px;
     stroke-width: 2px;
 }
+.yAxi {
+    padding-left: 15px;
+}

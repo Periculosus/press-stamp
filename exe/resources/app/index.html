@@ -5,6 +5,7 @@
     <title>Intersecting Area Calculator</title>
 
     <!-- style sheets  -->
+    <link rel="stylesheet" href="libs/tipsy/stylesheets/tipsy.css">
     <link rel="stylesheet" href="index.css">
 
     <!-- script for enabling other libs of js -->
@@ -17,17 +18,36 @@
 
 </head>
 <body>
-    <h3><br>АНАЛИТИЧЕСКОЕ ИССЛЕДОВАНИЕ РАБОТЫ УНИВЕРСАЛЬНОГО УПРУГОГО КОМПЕНСАТОРА ПОГРЕШНОСТЕЙ НАПРАВЛЕНИЯ ПОЛЗУНА</h3>
-    <br><button id="idCircleCalc" class="classCircleCalc">Circle Calculator</button>
-    <br><button id="idEllipseCalc" class="classEllipseCalc">Ellipse Calculator</button>
-    <br><button id="idPolygonsCalc" class="classPolygonsCalc">Polygon Calculator</button>
-    <br><button id="infoID" class="infoClass">Info</button>
+    <div><h3>АНАЛИТИЧЕСКОЕ ИССЛЕДОВАНИЕ РАБОТЫ УНИВЕРСАЛЬНОГО УПРУГОГО КОМПЕНСАТОРА ПОГРЕШНОСТЕЙ НАПРАВЛЕНИЯ ПОЛЗУНА</h3></div>
+
+    <div id="buttonsID" class="buttonsClass">
+        <br><button id="idCircleCalc" class="classCircleCalc">Circle Calculator</button>
+        <br><button id="idEllipseCalc" class="classEllipseCalc">Ellipse Calculator</button>
+        <br><button id="idPolygonsCalc" class="classPolygonsCalc">Polygon Calculator</button>
+        <br><button id="infoID" class="infoClass">Info</button>
+    </div>
+
+    <div id="imageID" class="imageClass">
+        <div id="tip1" class="tipClass tipc1" title="Хвостовик"></div>
+        <div id="tip2" class="tipClass tipc2" title="Нижняя упругая пластина"></div>
+        <div id="tip3" class="tipClass tipc3" title="Верхняя упругая пластина"></div>
+        <div id="tip4" class="tipClass tipc4" title="Отверстия в упругих пластинах"></div>
+        <div id="tip5" class="tipClass tipc5" title="Ползун пресса"></div>
+        <div id="tip6" class="tipClass tipc6" title="Верхняя плита штампа"></div>
+        <div id="tip7" class="tipClass tipc7" title="Винтовое соединение хвостовика и верхней плиты штампа"></div>
+        <div id="tip8" class="tipClass tipc8" title="Колпак"></div>
+        <div id="tip9" class="tipClass tipc9" title="Зуб колпака для фиксации повернутой упругой пластины"></div>
+        <div id="tip10" class="tipClass tipc10" title="Пружина"></div>
+
+        <img class="pressStamp" src="img/index-press-stamp.jpg">
+    </div>
 
     <!-- lib scripts -->
     <script src="libs/jquery-3.1.1.min.js"></script>
+    <script src="libs/tipsy/javascripts/jquery.tipsy.js"></script>
+
     <!-- my scripts -->
     <script src="index.js"></script>
-
 
 </body>
 </html>

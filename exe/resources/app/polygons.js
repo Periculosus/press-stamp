@@ -169,4 +169,7 @@ $("#readInputId").click(function () {
     //radius from R1 ro ellipse 1
 //            myGraph.drawLine(function(){}, 0, 0, centroidAxis[0], centroidAxis[1], 'black', 1);
 
+    myGraph.drawText(function(){}, "Y", -20, -90);
+    myGraph.drawText(function(){}, "X", 90, 15);
+
 });
