@@ -1,5 +1,10 @@
+window.onload = $("body").hide().fadeIn(2000);
+
 $("#drawGraphicsId").click(function () {
     window.open('ellipseGraph.html', '', "width=705,height=800");
+});
+$("#infoId").click(function () {
+    window.open('zInfoEllipse.html', '', "width=700,height=800");
 });
 
 ////////////////////////////////////////////////////////// - stupidity

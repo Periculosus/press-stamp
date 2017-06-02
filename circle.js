@@ -1,6 +1,12 @@
+window.onload = $("body").hide().fadeIn(2000);
+
 $("#drawCircleGraphID").click(function () {
     window.open('circleGraph.html', '', "width=705,height=700");
 });
+$("#infoId").click(function () {
+    window.open('zInfoCircle.html', '', "width=750,height=800");
+});
+
 
 $("#fillDataCircleID").click(function () {
     $("input[name='upperR1']").val(83);

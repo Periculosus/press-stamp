@@ -1,0 +1,27 @@
+body {
+    background-image: url("img/infobg.jpg");
+
+    color: #f0e9d3;
+    font-family: "Copse", Georgia, "Times New Roman", Times, serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: justify;
+}
+h2 {
+    text-align: center;
+}
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.7;
+    border-radius: 15px;
+    padding: 3px;
+}
+p::first-letter {
+    padding-left: 40px;
+}
+xmp {
+    color: lawngreen;
+}

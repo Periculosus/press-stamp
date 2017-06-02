@@ -1,3 +1,9 @@
+window.onload = $("body").hide().fadeIn(2000);
+
+$("#infoId").click(function () {
+    window.open('zInfoPolygon.html', '', "width=750,height=800");
+});
+
 $("#fillDataPolygonID").click(function () {
     $("#upperCircleRadiusId").val(90);
     $("#lowerCircleRadiusId").val(100);
