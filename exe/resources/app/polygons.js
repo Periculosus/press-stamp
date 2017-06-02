@@ -1,3 +1,9 @@
+window.onload = $("body").hide().fadeIn(2000);
+
+$("#infoId").click(function () {
+    window.open('zInfoPolygon.html', '', "width=750,height=800");
+});
+
 $("#fillDataPolygonID").click(function () {
     $("#upperCircleRadiusId").val(90);
     $("#lowerCircleRadiusId").val(100);
@@ -53,7 +59,7 @@ $("#savePolygonGraphID").click(function () {
     var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
     saveAs(text, "dataPolygon" + fullTime + ".txt");
 
-    sweetAlert("Saved");
+    sweetAlert("Saved", "to file", "success");
 });
 
 $("#runScriptId").click(function () {
@@ -159,8 +165,11 @@ $("#readInputId").click(function () {
         }
     }
     var areaClippedPolygon = 1 / 2 * Math.abs((XnYn_plus_1) - (YnXn_plus_1));
-    $("#coordinatesOutputsId").append("<br><b>Площадь пересечения<br>многоугольников <br>S = </b>" + areaClippedPolygon.toFixed(3) + " см<sup>2</sup>");
-
+    $("#coordinatesOutputsId").append("<br><b>Площадь пересечения<br>многоугольников <br>S = </b>" +
+        areaClippedPolygon.toFixed(3) + " см<sup>2</sup>");
+    sweetAlert("Результат",
+        "Площадь пересечения многоугольников S = " + areaClippedPolygon.toFixed(3) + " см2",
+        "success");
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     var centroidAxis = centroid(clippedPolygon);

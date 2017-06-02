@@ -171,7 +171,7 @@ $("#saveGraphDataID").click(function () {
     var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
     saveAs(text, "dataEllipseRatio" + fullTime + ".txt");
 
-    sweetAlert("Saved");
+    sweetAlert("Saved", "to file", "success");
 });
 
 function coordinates(x) {

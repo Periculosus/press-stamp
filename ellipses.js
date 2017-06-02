@@ -94,7 +94,7 @@ $("#saveEllipseGraphID").click(function () {
     var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
     saveAs(text, "dataEllipse" + fullTime + ".txt");
 
-    sweetAlert("Saved");
+    sweetAlert("Saved", "to file", "success");
 });
 
 $("#idDataEllipse input").keydown(function(event) {
@@ -102,7 +102,7 @@ $("#idDataEllipse input").keydown(function(event) {
     }
     else {
         if (event.keyCode < 48 || event.keyCode > 57 ) {
-            sweetAlert("Input allow only numbers");
+            sweetAlert("Input allow only numbers", "ERROR", "error");
         }
     }
 
@@ -147,7 +147,7 @@ $('#idCalculateArea').click(function () {
         }
     });
     if(counterInputs != 9){
-        sweetAlert("Some fields is empty, please correct it.")
+        sweetAlert("Some fields is empty, please correct it.", "ERROR", "error")
     }
     else{
 
@@ -244,7 +244,14 @@ $('#idCalculateArea').click(function () {
     $("output[name='Si']").empty().text(SAreaIntegral.toFixed(3));
     $("output[name='Ki']").empty().text(KAreaEllipse1.toFixed(3));
 
-
+    sweetAlert("Результат",
+        "Координаты точек пересечения:\n" +
+        "(x1, y1) = " + "(" + x1Intersecting.toFixed(3) + ", " + y1Intersecting.toFixed(3) + ")\n" +
+        "(x2, y2) = " + "(" + x2Intersecting.toFixed(3) + ", " + y2Intersecting.toFixed(3) + ")\n" +
+        "Площадь пересечения отверстий (эллипсов) Si = " + SAreaIntegral.toFixed(3) + "\n" +
+        "Коэффициент перекрытия Ki= " + KAreaEllipse1.toFixed(3),
+        "success"
+    );
     //////////////////////////////////////////////////////////////
         //clear canvas
         myGraph.clearCanvas();

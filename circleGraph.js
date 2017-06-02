@@ -179,7 +179,7 @@ $("#saveGraphDataID").click(function () {
     var text = new Blob([inputData], {type: "text/plain;charset=utf-8"});
     saveAs(text, "dataCircleRatio" + fullTime + ".txt");
 
-    sweetAlert("Saved");
+    sweetAlert("Saved", "to file", "success");
 });
 
 function sqr(number) {

@@ -22,7 +22,10 @@ $('#idPolygonsCalc').click(function () {
 });
 
 $('#infoID').click(function () {
-
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        window.open('zInfo.html', '', "width=530");
+    }
+    else window.open('zInfo.html', '', "width=700,height=800");
 });
 
 ///////////////////////////////////////////////////// video
