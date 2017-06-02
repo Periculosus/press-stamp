@@ -1,3 +1,11 @@
+window.onload = function () {
+    $("input[name='R1']").val(localStorage.getItem("circleLsR1"));
+    $("input[name='R2']").val(localStorage.getItem("circleLsR2"));
+    $("input[name='LR1']").val(localStorage.getItem("circleLsLR1"));
+    $("input[name='LR2']").val(localStorage.getItem("circleLsLR2"));
+    $("input[name='angle']").val(localStorage.getItem("circleLsAngle"));
+};
+
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistCircleGraphClass").empty();
     $("#coordinateSystemCircleId").append("<b class='yAxi'> K</b>");

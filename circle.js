@@ -10,6 +10,14 @@ $("#fillDataCircleID").click(function () {
     $("input[name='LR1']").val(42);
     $("input[name='LR2']").val(48);
     $("input[name='angle']").val(37);
+
+    //local storage
+    localStorage.setItem("circleLsR1", 30);
+    localStorage.setItem("circleLsR2", 33);
+    localStorage.setItem("circleLsLR1", 42);
+    localStorage.setItem("circleLsLR2", 48);
+    localStorage.setItem("circleLsAngle", 37);
+    //local storage
 });
 
 $("#saveCircleGraphID").click(function () {
@@ -91,6 +99,14 @@ $("#calculateIntersectingAreaId").click(function () {
     var LR2 = $("input[name='LR2']").val();
     var angle = $("input[name='angle']").val();
 
+    //local storage
+    localStorage.setItem("circleLsR1", R1);
+    localStorage.setItem("circleLsR2", R2);
+    localStorage.setItem("circleLsLR1", LR1);
+    localStorage.setItem("circleLsLR2", LR2);
+    localStorage.setItem("circleLsAngle", angle);
+    //local storage
+
     var K_d = Math.sqrt(sqr(LR1) + sqr(LR2) -2 * LR1 * LR2 * Math.cos(angle * Math.PI/180));
     var K_w1 = LR1 / R1;
     var K_w2 = LR2 / R2;
@@ -161,3 +177,22 @@ $("#calculateIntersectingAreaId").click(function () {
         ", <b>angle = </b>" + angle);
 
 });
+
+/////// local storage
+/*
+window.onload = function() {
+    var inputR1 = prompt();
+    var inputR2 = prompt();
+    var inputLR1 = prompt();
+    var inputLR2 = prompt();
+    var angle = prompt();
+
+    localStorage.setItem("storageName", inputR1);
+    localStorage.setItem("storageName", inputR2);
+    localStorage.setItem("storageName", inputLR1);
+    localStorage.setItem("storageName", inputLR2);
+    localStorage.setItem("storageName", angle);
+
+};
+*/
+/////// local storage

@@ -1,3 +1,17 @@
+//local storage get vars
+window.onload = function () {
+    $("input[name='a1']").val(localStorage.getItem("ellipseLsA1"));
+    $("input[name='b1']").val(localStorage.getItem("ellipseLsB1"));
+    $("input[name='a2']").val(localStorage.getItem("ellipseLsA2"));
+    $("input[name='b2']").val(localStorage.getItem("ellipseLsB2"));
+    $("input[name='R1']").val(localStorage.getItem("ellipseLsR1"));
+    $("input[name='R2']").val(localStorage.getItem("ellipseLsR2"));
+    $("input[name='LR1']").val(localStorage.getItem("ellipseLsLR1"));
+    $("input[name='LR2']").val(localStorage.getItem("ellipseLsLR2"));
+    $("input[name='angleF']").val(localStorage.getItem("ellipseLsAngleF"));
+};
+// local storage get vars
+
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistEllipseGraphClass").empty();
     $("#coordinateSystemEllipseGraphicsId").append("<b class='yAxi'> K</b>");

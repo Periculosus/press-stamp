@@ -60,6 +60,18 @@ $("#fillDataEllipseID").click(function () {
     lr1 = $("input[name='LR1']").val();
     lr2 = $("input[name='LR2']").val();
     angleF = $("input[name='angleF']").val();
+
+    //local storage write vars
+    localStorage.setItem("ellipseLsA1", 21);
+    localStorage.setItem("ellipseLsB1", 17);
+    localStorage.setItem("ellipseLsA2", 25);
+    localStorage.setItem("ellipseLsB2", 15);
+    localStorage.setItem("ellipseLsR1", 70);
+    localStorage.setItem("ellipseLsR2", 80);
+    localStorage.setItem("ellipseLsLR1", 30);
+    localStorage.setItem("ellipseLsLR2", 35);
+    localStorage.setItem("ellipseLsAngleF", 45);
+    //local storage write vars
 });
 
 $("#saveEllipseGraphID").click(function () {
@@ -133,6 +145,18 @@ $('#idCalculateArea').click(function () {
         sweetAlert("Some fields is empty, please correct it.")
     }
     else{
+
+        //local storage write vars
+        localStorage.setItem("ellipseLsA1", a1);
+        localStorage.setItem("ellipseLsB1", b1);
+        localStorage.setItem("ellipseLsA2", a2);
+        localStorage.setItem("ellipseLsB2", b2);
+        localStorage.setItem("ellipseLsR1", R1);
+        localStorage.setItem("ellipseLsR2", R2);
+        localStorage.setItem("ellipseLsLR1", lr1);
+        localStorage.setItem("ellipseLsLR2", lr2);
+        localStorage.setItem("ellipseLsAngleF", angleF);
+        //local storage write vars
 
     var result;
     var h = R1/10000;
