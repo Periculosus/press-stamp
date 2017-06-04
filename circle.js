@@ -4,10 +4,8 @@ $("input").each(function () {
     $(this).keydown(function () {
         if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {
         }
-        else {
-            if (event.keyCode < 48 || event.keyCode > 57 ) {
-                sweetAlert("Input allow only numbers", "ERROR", "error");
-            }
+        else if (event.keyCode < 48 || event.keyCode > 57 ) {
+            sweetAlert("Input allow only numbers", "ERROR", "error");
         }
     })
 });
@@ -18,7 +16,6 @@ $("#drawCircleGraphID").click(function () {
 $("#infoId").click(function () {
     window.open('zInfoCircle.html', '', "width=750,height=800");
 });
-
 
 $("#fillDataCircleID").click(function () {
     $("input[name='upperR1']").val(83);
@@ -95,13 +92,13 @@ function intersectingCircleCalc() {
     }
 }
 
-window.upperR1 = 0;
-window.lowerR2 = 0;
-window.R1 = 0;
-window.R2 = 0;
-window.LR1 = 0;
-window.LR2 = 0;
-window.angle = 0;
+// window.upperR1 = 0;
+// window.lowerR2 = 0;
+// window.R1 = 0;
+// window.R2 = 0;
+// window.LR1 = 0;
+// window.LR2 = 0;
+// window.angle = 0;
 
 function sqr(number) {
     return Math.pow(number, 2);
@@ -227,22 +224,3 @@ $("#calculateIntersectingAreaId").click(function () {
 
     }
 });
-
-/////// local storage
-/*
-window.onload = function() {
-    var inputR1 = prompt();
-    var inputR2 = prompt();
-    var inputLR1 = prompt();
-    var inputLR2 = prompt();
-    var angle = prompt();
-
-    localStorage.setItem("storageName", inputR1);
-    localStorage.setItem("storageName", inputR2);
-    localStorage.setItem("storageName", inputLR1);
-    localStorage.setItem("storageName", inputLR2);
-    localStorage.setItem("storageName", angle);
-
-};
-*/
-/////// local storage

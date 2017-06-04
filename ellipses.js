@@ -142,13 +142,20 @@ function coordinates(x) {
 $('#idCalculateArea').click(function () {
 
     window.counterInputs = 0;
+    window.diapasonCounter = 0;
     $("#idDataEllipse input").each(function(){
         if( $(this).val() != ''){
             counterInputs += 1;
         }
+        if($(this).val() < 120 && $(this).val() > 10) {
+            diapasonCounter += 1;
+        }
     });
     if(counterInputs != 9){
         sweetAlert("Some fields is empty, please correct it.", "ERROR", "error")
+    }
+    else if (diapasonCounter != 9) {
+        sweetAlert("Wrong diapason", "ERROR", "error");
     }
     else {
 
