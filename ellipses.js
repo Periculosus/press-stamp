@@ -140,6 +140,7 @@ function coordinates(x) {
 }
 
 $('#idCalculateArea').click(function () {
+
     window.counterInputs = 0;
     $("#idDataEllipse input").each(function(){
         if( $(this).val() != ''){
@@ -149,7 +150,7 @@ $('#idCalculateArea').click(function () {
     if(counterInputs != 9){
         sweetAlert("Some fields is empty, please correct it.", "ERROR", "error")
     }
-    else{
+    else {
 
         //local storage write vars
         localStorage.setItem("ellipseLsA1", a1);
