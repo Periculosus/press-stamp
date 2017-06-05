@@ -4,6 +4,18 @@ $("#infoId").click(function () {
     window.open('zInfoPolygon.html', '', "width=750,height=800");
 });
 
+// input check
+$("input").each(function () {
+    $(this).keydown(function () {
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {
+        }
+        else if (event.keyCode < 48 || event.keyCode > 57 ) {
+            sweetAlert("Input allow only numbers", "ERROR", "error");
+        }
+    })
+});
+// input check
+
 $("#fillDataPolygonID").click(function () {
     $("#upperCircleRadiusId").val(90);
     $("#lowerCircleRadiusId").val(100);
@@ -63,32 +75,63 @@ $("#savePolygonGraphID").click(function () {
 });
 
 $("#runScriptId").click(function () {
-    $("#subjectPolygonInputDataId").empty();
-    $("#clipPolygonInputDataId").empty();
-    $("#coordinatesOutputsId").empty();
-    //clear canvas
-    myGraph.clearCanvas();
 
-    var subjectPolygonVertexCount = $("input[name='subjectPolygonVertexCount']").val(),
-        clipPolygonVertexCount = $("input[name='clipPolygonVertexCount']").val();
-
-    $("#subjectPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>верхней</b> пластине<br><i>(подвижной)</i>");
-    for (var i = 0; i < subjectPolygonVertexCount; i++) {
-        $("#subjectPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xUpper'> " +
-                                                    "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yUpper'>");
+    if($("#subjectPolygonVertexCountId").val() < 3 || $("#clipPolygonVertexCountId").val() < 3){
+        sweetAlert("Polygons must to have more than 3 vertexes", "ERROR", "error");
     }
+    else {
+        $("#subjectPolygonInputDataId").empty();
+        $("#clipPolygonInputDataId").empty();
+        $("#coordinatesOutputsId").empty();
+        //clear canvas
+        myGraph.clearCanvas();
 
-    $("#clipPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>нижней</b> пластине<br><i>(неподвижной)</i>");
-    for (i = 0; i < clipPolygonVertexCount; i++) {
-        $("#clipPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xLower'> " +
-                                                    "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yLower'>");
+        var subjectPolygonVertexCount = $("input[name='subjectPolygonVertexCount']").val(),
+            clipPolygonVertexCount = $("input[name='clipPolygonVertexCount']").val();
+
+        $("#subjectPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>верхней</b> пластине<br><i>(подвижной)</i>");
+        for (var i = 0; i < subjectPolygonVertexCount; i++) {
+            $("#subjectPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xUpper'> " +
+                "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yUpper'>");
+        }
+
+        $("#clipPolygonInputDataId").append("Координаты<br>многоугольника на<br><b>нижней</b> пластине<br><i>(неподвижной)</i>");
+        for (i = 0; i < clipPolygonVertexCount; i++) {
+            $("#clipPolygonInputDataId").append("<br>x" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='xLower'> " +
+                "y" + "<sub>" + (i + 1) + "</sub>" +" = <input type='text' name='yLower'>");
+        }
+
+        // input check
+        $("input").each(function () {
+            $(this).keydown(function () {
+                if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 127 || event.keyCode == 9) {
+                }
+                else if (event.keyCode < 48 || event.keyCode > 57 ) {
+                    sweetAlert("Input allow only numbers", "ERROR", "error");
+                }
+            })
+        });
+        // input check
+
+        $("#inputDataId").show();
+        // reDraw coordinate system in max lvl
+        myGraph.drawXAxis();
+        myGraph.drawYAxis();
     }
-
-    $("#inputDataId").show();
-    // reDraw coordinate system in max lvl
-    myGraph.drawXAxis();
-    myGraph.drawYAxis();
 });
+
+function polygonArea(areaCoordinatesPolygon){
+    var XnYn_plus_1 = 0, YnXn_plus_1 = 0;
+    areaCoordinatesPolygon.push(areaCoordinatesPolygon[0]);
+    for (var j = 0; j < areaCoordinatesPolygon.length; j++) {
+        if ((j + 1) < areaCoordinatesPolygon.length) {
+            XnYn_plus_1 = XnYn_plus_1 + (areaCoordinatesPolygon[j][0] * areaCoordinatesPolygon[j + 1][1]);
+            YnXn_plus_1 = YnXn_plus_1 + (areaCoordinatesPolygon[j][1] * areaCoordinatesPolygon[j + 1][0]);
+        }
+    }
+    var areaOfPolygon = 1 / 2 * Math.abs((XnYn_plus_1) - (YnXn_plus_1));
+    return areaOfPolygon;
+}
 
 $("#readInputId").click(function () {
     $("#coordinatesOutputsId").empty();
@@ -131,11 +174,7 @@ $("#readInputId").click(function () {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//           var subjectPolygon = [[10, 10], [70, 30], [50, 50]],
-//               clipPolygon = [[20, 20], [77, 0], [0, 90]];
     var clippedPolygon = clip(subjectPolygon, clipPolygon);
-
-//            alert("subjectPolygon = " + subjectPolygon + " clipPolygon = " + clipPolygon);
 
     myGraph.drawPolygons(function () {}, subjectPolygon, '#363636', '#6599FF', 1);
     myGraph.drawPolygons(function () {}, clipPolygon, '#363636', '#097054', 1);
@@ -165,10 +204,14 @@ $("#readInputId").click(function () {
         }
     }
     var areaClippedPolygon = 1 / 2 * Math.abs((XnYn_plus_1) - (YnXn_plus_1));
-    $("#coordinatesOutputsId").append("<br><b>Площадь пересечения<br>многоугольников <br>S = </b>" +
-        areaClippedPolygon.toFixed(3) + " см<sup>2</sup>");
+    var KClippedPolygon = areaClippedPolygon / polygonArea(subjectPolygon);
+
+    $("#coordinatesOutputsId").append("<br><b>Площадь пересечения<br>многоугольников <br>S = </b>" + areaClippedPolygon.toFixed(3) + " см<sup>2</sup>" +
+        "<br><b>Коэффициент площади пересечения <br>многоугольников <br>K = </b>" + KClippedPolygon.toFixed(3));
+
     sweetAlert("Результат",
-        "Площадь пересечения многоугольников S = " + areaClippedPolygon.toFixed(3) + " см2",
+        "Площадь пересечения многоугольников S = " + areaClippedPolygon.toFixed(3) + " см2\n" +
+        "Коэффициент площади пересечения многоугольников K = " + KClippedPolygon.toFixed(3),
         "success");
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
