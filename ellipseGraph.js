@@ -1,3 +1,4 @@
+window.onload = $("body").fadeIn(1000);
 //local storage get vars
 window.onload = function () {
     $("input[name='a1']").val(localStorage.getItem("ellipseLsA1"));
@@ -10,8 +11,13 @@ window.onload = function () {
     $("input[name='LR2']").val(localStorage.getItem("ellipseLsLR2"));
     $("input[name='angleF']").val(localStorage.getItem("ellipseLsAngleF"));
 };
-// local storage get vars
 
+// open info
+$("#infoId").click(function () {
+    window.open('zInfoEllipse.html', '', "width=700,height=800");
+});
+
+// animation and draw graphs
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistEllipseGraphClass").empty();
     $("#coordinateSystemEllipseGraphicsId").append("<b class='yAxi'> K</b>");

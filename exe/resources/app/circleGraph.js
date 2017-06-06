@@ -1,3 +1,5 @@
+window.onload = $("body").fadeIn(1000);
+
 window.onload = function () {
     $("input[name='R1']").val(localStorage.getItem("circleLsR1"));
     $("input[name='R2']").val(localStorage.getItem("circleLsR2"));
@@ -6,6 +8,12 @@ window.onload = function () {
     $("input[name='angle']").val(localStorage.getItem("circleLsAngle"));
 };
 
+// open info
+$("#infoId").click(function () {
+    window.open('zInfoCircle.html', '', "width=750,height=800");
+});
+
+//
 function drawLineGraph(xArrays, yArrays) {
     $(".chartistCircleGraphClass").empty();
     $("#coordinateSystemCircleId").append("<b class='yAxi'> K</b>");

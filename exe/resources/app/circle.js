@@ -1,4 +1,5 @@
-window.onload = $("body").hide().fadeIn(2000);
+window.onload = $("body").fadeIn(2000);
+// window.onload = $("body").hide().fadeIn(2000);
 
 $("input").each(function () {
     $(this).keydown(function () {
